@@ -28,14 +28,14 @@ protected:
     Node* test_node; // default object for node unit tests
 
     void SetUp() override {
-        test_node = new Node(42);
+        test_node = new Node("Boulder");
     }
 
     void TearDown() override {}
 };
 
-TEST_F(NodeTest, ConstructorInitializesValue) {
-    EXPECT_EQ(test_node->getValue(), 42);
+TEST_F(NodeTest, ConstructorInitializesName) {
+    EXPECT_EQ(test_node->getName(), "Boulder");
 }
 
 TEST_F(NodeTest, ConstructorInitializesDistToInfinity) {
@@ -61,7 +61,7 @@ TEST_F(NodeTest, SetsVisitedCorrectly) {
 }
 
 TEST_F(NodeTest, SetsParent) {
-    Node* parent_node = new Node(24);
+    Node* parent_node = new Node("Longmont");
     test_node->setParent(parent_node);
     EXPECT_EQ(test_node->getParent(), parent_node);
 }
@@ -74,8 +74,8 @@ protected:
     Node* node_b; 
     
     void SetUp() override {
-        node_a = new Node(1);
-        node_b = new Node(2);
+        node_a = new Node("Boulder");
+        node_b = new Node("Longmont");
         test_edge = new Edge(node_a, node_b, 3);
     }
 

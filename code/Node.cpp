@@ -1,9 +1,10 @@
 #include "Node.h"
 #include <limits>
 #include <iostream>
+#include <string>
 
-Node::Node(int val) {
-    value = val;
+Node::Node(string n) {
+    name = n;
     dist = numeric_limits<double>::infinity();
     visited = false;
     parent = nullptr;
@@ -11,8 +12,8 @@ Node::Node(int val) {
 
 Node::~Node() {}
 
-int Node::getValue() {
-    return value;
+string Node::getName() {
+    return name;
 }
 
 double Node::getDist() {

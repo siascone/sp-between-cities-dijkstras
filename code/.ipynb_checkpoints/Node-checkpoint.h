@@ -3,20 +3,21 @@
 
 #include <iostream>
 #include <memory>
+#include <string>
 
 using namespace std;
 
 class Node {
 private:
-    int value; // id of node
+    string name; // city name of node
     double dist; // distance of node
     bool visited;
     Node* parent;   // parent of node in sp.
 
 public:
-    Node(int val); // constructor
+    Node(string n); // constructor
     ~Node(); // deconstructor
-    int getValue(); // return id of node
+    string getName(); // return name of node
     double getDist(); // return distance of node
     void setDist(double d);
     bool isVisited(); // return true or false if node has been visited
