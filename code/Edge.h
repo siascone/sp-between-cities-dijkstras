@@ -10,14 +10,14 @@ class Edge {
 private:
     Node* node_a;  // start node
     Node* node_b;  // end node
-    int weight; // edge weight
+    double weight; // edge weight
     
 public:
-    Edge(Node* n1, Node* n2, int w); // constructor
+    Edge(Node* n1, Node* n2, double w); // constructor
     ~Edge(); // deconstructor
     Node* getNodeA(); // get node a
     Node* getNodeB(); // get node b
-    int getWeight();
+    double getWeight();
     void setWeight(int val); // setter for edge weight
 };
 

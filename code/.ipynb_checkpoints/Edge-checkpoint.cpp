@@ -1,6 +1,6 @@
 #include "Edge.h"
 
-Edge::Edge(Node* n1, Node* n2, int w) {
+Edge::Edge(Node* n1, Node* n2, double w) {
     node_a = n1;
     node_b = n2;
     weight = w;
@@ -16,7 +16,7 @@ Node* Edge::getNodeB() {
     return node_b;
 }
 
-int Edge::getWeight() {
+double Edge::getWeight() {
     return weight;
 }
 

@@ -266,4 +266,9 @@ CMakeFiles/run_tests.dir/tests/test_hw.cpp.o: \
  /usr/include/gtest/gtest_pred_impl.h /usr/include/c++/11/math.h \
  /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/tests/../code/Edge.h \
  /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/tests/../code/Node.h \
+ /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/tests/../code/Graph.h \
+ /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/tests/../code/Edge.h \
+ /usr/include/c++/11/queue /usr/include/c++/11/deque \
+ /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
+ /usr/include/c++/11/bits/stl_heap.h /usr/include/c++/11/bits/stl_queue.h \
  /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/tests/../code/Node.h

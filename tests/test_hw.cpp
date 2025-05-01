@@ -15,7 +15,7 @@
 // C++ spec, and therefore might not work with all compilers.
 #define private public
 #include "../code/Edge.h"
-// #include "../code/Graph.h"
+#include "../code/Graph.h"
 #include "../code/Node.h"
 
 using namespace std;
@@ -97,6 +97,87 @@ TEST_F(EdgeTest, InitializeAndGetWeight) {
 TEST_F(EdgeTest, CorrectlySetsNewEdgeWeight) {
     test_edge->setWeight(2); // relax edge from 3 to 2
     EXPECT_EQ(test_edge->getWeight(), 2);
+}
+
+// Graph/Edge/Node Integration Tests
+class GraphTest : public ::testing::Test {
+protected:
+    
+    Graph* test_graph;
+    Node* boulder;
+    Node* hygiene;
+    Edge* boulder_hygiene;
+    
+    void SetUp() {
+        test_graph = new Graph();
+        boulder = new Node("Boulder");
+        hygiene = new Node("Hygiene");
+        boulder_hygiene = new Edge(boulder, hygiene, 3);
+    }
+    
+    void TearDown() {}
+};
+
+// Graph* mkSmallLocalGraph();
+
+TEST_F(GraphTest, TestAddAndGetNodes) {
+    test_graph->addNode(boulder);
+    test_graph->addNode(hygiene);
+    
+    EXPECT_EQ(test_graph->getNodes()[0], boulder);
+    EXPECT_EQ(test_graph->getNodes()[1], hygiene);
+}
+
+TEST_F(GraphTest, TestAddAndGetEdges) {
+    test_graph->addEdge(boulder_hygiene);
+    
+    EXPECT_EQ(test_graph->getEdges()[0], boulder_hygiene);
+}
+
+TEST_F(GraphTest, TestGetAdjacentEdges) {
+    test_graph->addNode(boulder);
+    test_graph->addNode(hygiene);
+    test_graph->addEdge(boulder_hygiene);
+    set<Edge*> adjEdges = test_graph->getAdjacentEdges(boulder);
+    EXPECT_NE(adjEdges.find(boulder_hygiene), adjEdges.end());
+}
+
+// ------------------ Helper Builders ------------------ 
+
+Graph* mkSmallLocalGraph() {
+      Graph* smGraph(new Graph());
+    
+      Node* boulder(new Node("Boulder"));
+      Node* longmont(new Node("Longmont"));
+      Node* gunbarrel(new Node("Gunbarrel"));
+      Node* niwot(new Node("Niwot"));
+      Node* hygiene(new Node("Hygiene"));
+
+      Edge* boulder_hygiene(new Edge(boulder, hygiene, 3));
+      Edge* boulder_niwot(new Edge(boulder, niwot, 1.5));
+      Edge* boulder_gunbarrel(new Edge(boulder, gunbarrel, 1.25));
+      Edge* hygiene_niwot(new Edge(hygiene, niwot, 2));
+      Edge* hygiene_longmont(new Edge(hygiene, longmont, 1.5));
+      Edge* niwot_longmont(new Edge(niwot, longmont, 1.5));
+      Edge* niwot_gunbarrel(new Edge(niwot, gunbarrel, .25));
+      Edge* gunbarrel_longmont(new Edge(gunbarrel, longmont, 2));
+    
+      smGraph->addNode(boulder);
+      smGraph->addNode(longmont);
+      smGraph->addNode(gunbarrel);
+      smGraph->addNode(niwot);
+      smGraph->addNode(hygiene);
+
+      smGraph->addEdge(boulder_hygiene);
+      smGraph->addEdge(boulder_niwot);
+      smGraph->addEdge(boulder_gunbarrel);
+      smGraph->addEdge(hygiene_niwot);
+      smGraph->addEdge(hygiene_longmont);
+      smGraph->addEdge(niwot_longmont);
+      smGraph->addEdge(niwot_gunbarrel);
+      smGraph->addEdge(gunbarrel_longmont);
+
+      return smGraph;
 }
 
 // class test_Graph : public ::testing::Test {
