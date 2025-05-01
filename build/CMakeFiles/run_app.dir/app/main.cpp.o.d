@@ -164,4 +164,5 @@ CMakeFiles/run_app.dir/app/main.cpp.o: \
  /usr/include/c++/11/bits/atomic_base.h \
  /usr/include/c++/11/bits/atomic_lockfree_defines.h \
  /usr/include/c++/11/backward/auto_ptr.h \
- /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/app/../code/Edge.h
+ /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/app/../code/Edge.h \
+ /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/app/../code/Node.h

@@ -14,7 +14,7 @@
 // else. It is also not portable because it is not supported by the
 // C++ spec, and therefore might not work with all compilers.
 #define private public
-// #include "../code/Edge.h"
+#include "../code/Edge.h"
 // #include "../code/Graph.h"
 #include "../code/Node.h"
 
@@ -22,16 +22,16 @@ using namespace std;
 
 
 // Node Unit Tests
+
 class NodeTest : public ::testing::Test {
 protected:
     Node* test_node; // default object for node unit tests
-    
+
     void SetUp() override {
         test_node = new Node(42);
     }
-    
+
     void TearDown() override {}
-    
 };
 
 TEST_F(NodeTest, ConstructorInitializesValue) {
@@ -64,6 +64,39 @@ TEST_F(NodeTest, SetsParent) {
     Node* parent_node = new Node(24);
     test_node->setParent(parent_node);
     EXPECT_EQ(test_node->getParent(), parent_node);
+}
+
+// Edge/Node Integration Tests
+class EdgeTest : public ::testing::Test {
+protected:
+    Edge* test_edge; // default object for edge unit tests
+    Node* node_a;
+    Node* node_b; 
+    
+    void SetUp() override {
+        node_a = new Node(1);
+        node_b = new Node(2);
+        test_edge = new Edge(node_a, node_b, 3);
+    }
+
+    void TearDown() override {}
+};
+
+TEST_F(EdgeTest, InitializeAndGetNodeA) {
+    EXPECT_EQ(test_edge->getNodeA(), node_a);
+}
+
+TEST_F(EdgeTest, InitializeAndGetNodeB) {
+    EXPECT_EQ(test_edge->getNodeB(), node_b);
+}
+
+TEST_F(EdgeTest, InitializeAndGetWeight) {
+    EXPECT_EQ(test_edge->getWeight(), 3);
+}
+
+TEST_F(EdgeTest, CorrectlySetsNewEdgeWeight) {
+    test_edge->setWeight(2); // relax edge from 3 to 2
+    EXPECT_EQ(test_edge->getWeight(), 2);
 }
 
 // class test_Graph : public ::testing::Test {

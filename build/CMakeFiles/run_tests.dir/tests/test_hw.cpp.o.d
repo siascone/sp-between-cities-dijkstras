@@ -264,4 +264,6 @@ CMakeFiles/run_tests.dir/tests/test_hw.cpp.o: \
  /usr/include/gtest/gtest-test-part.h /usr/include/gtest/gtest_prod.h \
  /usr/include/gtest/gtest-typed-test.h \
  /usr/include/gtest/gtest_pred_impl.h /usr/include/c++/11/math.h \
+ /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/tests/../code/Edge.h \
+ /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/tests/../code/Node.h \
  /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/tests/../code/Node.h

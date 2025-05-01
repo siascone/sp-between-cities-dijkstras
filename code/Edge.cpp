@@ -1,38 +1,25 @@
-// #include "Edge.h"
+#include "Edge.h"
 
-// Edge::Edge(Node* n1, Node* n2) {
-//   // DONE FOR YOU
-//   a = n1;
-//   b = n2;
-// }
+Edge::Edge(Node* n1, Node* n2, int w) {
+    node_a = n1;
+    node_b = n2;
+    weight = w;
+}
 
-// Edge::~Edge() {
-//   // "DONE" FOR YOU
-// }
+Edge::~Edge() {}
 
-// Node* Edge::getStart() {
-//   // DONE FOR YOU
-//   return a;
-// }
+Node* Edge::getNodeA() {
+    return node_a;
+}
 
-// Node* Edge::getEnd() {
-//   // DONE FOR YOU
-//   return b;
-// }
+Node* Edge::getNodeB() {
+    return node_b;
+}
 
-// int Edge::getType() {
-//   // DONE FOR YOU
-//   return type;
-// }
+int Edge::getWeight() {
+    return weight;
+}
 
-// void Edge::setType(int edge_type) {
-//   // TODO
-//     this->type = edge_type;
-// }
-
-// // overloading operator << lets you put an Edge object into an output stream.
-// ostream& operator<<(std::ostream& out, Edge edge) {
-//   // DONE FOR YOU
-//   out << *edge.a << " -- " << *edge.b;
-//   return out;
-// }
+void Edge::setWeight(int val) {
+    weight = val;
+}

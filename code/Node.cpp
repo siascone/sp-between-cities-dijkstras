@@ -9,15 +9,7 @@ Node::Node(int val) {
     parent = nullptr;
 }
 
-Node::~Node() {
-  // "DONE" FOR YOU
-  //
-  // This is equivalent to the default destructor the compiler will
-  // generate for you. As a rule of thumb, you only need to `delete`
-  // member variables that were created with `new` inside this
-  // class. So, you don't need to do anything here. It could have been
-  // left out of the header/impl file entirely.
-}
+Node::~Node() {}
 
 int Node::getValue() {
     return value;
@@ -45,12 +37,4 @@ Node* Node::getParent() {
 
 void Node::setParent(Node* node) {    
     parent = node;
-}
-
-// overloading operator << lets you put a Node object into an output
-// stream.
-ostream& operator<<(std::ostream& out, Node node) {
-  // DONE FOR YOU
-  out << node.getValue();
-  return out;
 }
