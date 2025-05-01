@@ -145,7 +145,6 @@ CMakeFiles/run_app.dir/app/main.cpp.o: \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
  /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/app/../code/Graph.h \
- /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/app/../code/Edge.h \
  /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/app/../code/Node.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_tempbuf.h \
@@ -164,15 +163,5 @@ CMakeFiles/run_app.dir/app/main.cpp.o: \
  /usr/include/c++/11/bits/shared_ptr_atomic.h \
  /usr/include/c++/11/bits/atomic_base.h \
  /usr/include/c++/11/bits/atomic_lockfree_defines.h \
- /usr/include/c++/11/backward/auto_ptr.h /usr/include/c++/11/queue \
- /usr/include/c++/11/deque /usr/include/c++/11/bits/stl_deque.h \
- /usr/include/c++/11/bits/deque.tcc /usr/include/c++/11/vector \
- /usr/include/c++/11/bits/stl_vector.h \
- /usr/include/c++/11/bits/stl_bvector.h \
- /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/bits/stl_heap.h \
- /usr/include/c++/11/bits/stl_queue.h /usr/include/c++/11/set \
- /usr/include/c++/11/bits/stl_tree.h /usr/include/c++/11/bits/stl_set.h \
- /usr/include/c++/11/bits/stl_multiset.h \
- /usr/include/c++/11/bits/erase_if.h \
- /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/app/../code/Node.h \
+ /usr/include/c++/11/backward/auto_ptr.h \
  /home/jovyan/CSPB_2270/sp-between-cities-dijkstras/app/../code/Edge.h
