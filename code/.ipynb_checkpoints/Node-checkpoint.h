@@ -13,6 +13,7 @@ private:
     double dist; // distance of node
     bool visited;
     Node* parent;   // parent of node in sp.
+    int idx_in_pq; // index in priority queue
 
 public:
     Node(string n); // constructor
@@ -24,6 +25,8 @@ public:
     void setVisited(bool val);
     Node* getParent(); // getter for node parent
     void setParent(Node* node); // setter for node parent
+    int getIdxInPQ();
+    void setIdxInPQ(int idx);
     
 };
 
