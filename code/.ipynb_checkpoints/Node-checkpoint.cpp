@@ -41,7 +41,6 @@ void Node::setParent(Node* node) {
 }
 
 int Node::getIdxInPQ() {
-    cout << idx_in_pq << endl << endl;
     return idx_in_pq;
 }
 

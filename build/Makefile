@@ -257,6 +257,33 @@ code/Node.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_app.dir/build.make CMakeFiles/run_app.dir/code/Node.cpp.s
 .PHONY : code/Node.cpp.s
 
+code/Pqueue.o: code/Pqueue.cpp.o
+.PHONY : code/Pqueue.o
+
+# target to build an object file
+code/Pqueue.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/code/Pqueue.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_app.dir/build.make CMakeFiles/run_app.dir/code/Pqueue.cpp.o
+.PHONY : code/Pqueue.cpp.o
+
+code/Pqueue.i: code/Pqueue.cpp.i
+.PHONY : code/Pqueue.i
+
+# target to preprocess a source file
+code/Pqueue.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/code/Pqueue.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_app.dir/build.make CMakeFiles/run_app.dir/code/Pqueue.cpp.i
+.PHONY : code/Pqueue.cpp.i
+
+code/Pqueue.s: code/Pqueue.cpp.s
+.PHONY : code/Pqueue.s
+
+# target to generate assembly for a file
+code/Pqueue.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/code/Pqueue.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_app.dir/build.make CMakeFiles/run_app.dir/code/Pqueue.cpp.s
+.PHONY : code/Pqueue.cpp.s
+
 tests/test_hw.o: tests/test_hw.cpp.o
 .PHONY : tests/test_hw.o
 
@@ -304,6 +331,9 @@ help:
 	@echo "... code/Node.o"
 	@echo "... code/Node.i"
 	@echo "... code/Node.s"
+	@echo "... code/Pqueue.o"
+	@echo "... code/Pqueue.i"
+	@echo "... code/Pqueue.s"
 	@echo "... tests/test_hw.o"
 	@echo "... tests/test_hw.i"
 	@echo "... tests/test_hw.s"

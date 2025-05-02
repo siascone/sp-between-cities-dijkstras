@@ -17,6 +17,7 @@
 #include "../code/Edge.h"
 #include "../code/Graph.h"
 #include "../code/Node.h"
+#include "../code/Pqueue.h"
 
 using namespace std;
 
@@ -103,6 +104,65 @@ TEST_F(EdgeTest, InitializeAndGetWeight) {
 TEST_F(EdgeTest, CorrectlySetsNewEdgeWeight) {
     test_edge->setWeight(2); // relax edge from 3 to 2
     EXPECT_EQ(test_edge->getWeight(), 2);
+}
+
+// PQ/Vector integration Tests
+
+class PQTest : public ::testing::Test {
+protected:
+    
+    Pqueue* test_pq;
+    Node* boulder;
+    
+    void SetUp() {
+        test_pq = new Pqueue();
+        boulder = new Node("boulder");
+    }
+    
+    void TearDown() {}
+    
+};
+
+TEST_F(PQTest, TestInsertAddsNodeToQueue) {
+    EXPECT_EQ(test_pq->getHeap().size(), 0);
+    test_pq->insert(boulder);
+    EXPECT_EQ(test_pq->getHeap().size(), 1);
+    EXPECT_EQ(test_pq->getHeap()[0], boulder);
+}
+
+TEST_F(PQTest, TestSwap) {
+    Node* longmont = new Node("Longmont");
+    test_pq->insert(boulder);
+    test_pq->insert(longmont);
+
+    EXPECT_EQ(test_pq->getHeap()[0], boulder);
+    EXPECT_EQ(test_pq->getHeap()[1], longmont);
+    
+    test_pq->swap(0, 1);
+    
+    EXPECT_EQ(test_pq->getHeap()[1], boulder);
+    EXPECT_EQ(test_pq->getHeap()[0], longmont);
+    
+}
+
+TEST_F(PQTest, TestInsertBubblesNodeUp) {
+    // EXPECT_EQ(false, true);
+    Node* longmont = new Node("Longmont");
+    Node* niwot = new Node("Niwot");
+    
+    
+    longmont->setDist(3);
+    niwot->setDist(2);
+    boulder->setDist(1);
+
+    
+    test_pq->insert(longmont);
+    test_pq->insert(niwot);
+    test_pq->insert(boulder);
+    
+    vector<Node*> heap = test_pq->getHeap();
+    
+    EXPECT_EQ(heap[0], boulder);
 }
 
 // Graph/Edge/Node Integration Tests

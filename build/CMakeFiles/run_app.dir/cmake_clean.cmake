@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/run_app.dir/code/Graph.cpp.o.d"
   "CMakeFiles/run_app.dir/code/Node.cpp.o"
   "CMakeFiles/run_app.dir/code/Node.cpp.o.d"
+  "CMakeFiles/run_app.dir/code/Pqueue.cpp.o"
+  "CMakeFiles/run_app.dir/code/Pqueue.cpp.o.d"
   "run_app"
   "run_app.pdb"
 )

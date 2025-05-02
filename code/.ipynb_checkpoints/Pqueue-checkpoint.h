@@ -1,26 +1,27 @@
-#ifndef PRIORITYQUEUE_H__
-#define PRIORITYQUEUE_H__
+#ifndef PQUEUE_H__
+#define PQUEUE_H__
 
 #include <iostream>
-#include <memory>
-#include <string>
+#include <vector>
+#include "Node.h"
 
 using namespace std;
 
-class PriorityQueue {
+class Pqueue {
 private:
     vector<Node*> heap;
 
 public:
-    PriorityQueue(); // constructor
-    ~PriorityQueue(); // deconstructor
+    Pqueue(); // constructor
+    ~Pqueue(); // deconstructor
+    vector<Node*> getHeap();
     void insert(Node* node);
     Node* getAndDeleteMin();
     bool isEmpty();
-    void updateNodeWeight(node);
+    void updateNodeWeight(Node* node);
     void swap(int i, int j);
     void bubbleUp(int i);
     void bubbleDown(int i);
 };
 
-#endif // PRIORITYQUEUE_H__
+#endif // PQUEUE_H__

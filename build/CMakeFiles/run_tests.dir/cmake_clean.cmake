@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/run_tests.dir/code/Graph.cpp.o.d"
   "CMakeFiles/run_tests.dir/code/Node.cpp.o"
   "CMakeFiles/run_tests.dir/code/Node.cpp.o.d"
+  "CMakeFiles/run_tests.dir/code/Pqueue.cpp.o"
+  "CMakeFiles/run_tests.dir/code/Pqueue.cpp.o.d"
   "CMakeFiles/run_tests.dir/tests/test_hw.cpp.o"
   "CMakeFiles/run_tests.dir/tests/test_hw.cpp.o.d"
   "run_tests"

@@ -3,8 +3,7 @@
 
 #include "Edge.h"
 #include "Node.h"
-#include <memory>
-#include <queue>
+#include "Pqueue.h"
 #include <set>
 #include <string>
 #include <vector>
