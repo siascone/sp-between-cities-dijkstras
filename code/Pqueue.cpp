@@ -11,46 +11,40 @@ vector<Node*> Pqueue::getHeap() {
 }
 
 void Pqueue::insert(Node* node) {
-//  self.heap.append(v) # add to end of heap array
-//  v.idx_in_priority_queue = len(self.heap) - 1 # set idx to end of heap
-//  self.bubble_up(v.idx_in_priority_queue) # bubble up to correct position
-    
     heap.push_back(node);
     node->setIdxInPQ(heap.size() - 1);
-    int idx = node->getIdxInPQ();
-    cout << "index in pq: " << node->getIdxInPQ() << endl;
-    bubbleUp(idx);
+    bubbleUp(node->getIdxInPQ());
 }
 
 Node* Pqueue::getAndDeleteMin() {
-//     if self.is_empty():
-//         return None # nothing to return
+    if (isEmpty()) {
+        return nullptr;
+    }
 
-//     # get min element
-//     min_vrtx = self.heap[0]
+    Node* min_node = heap[0];
 
-//     # move last ele of heap to front and bubble down
-//     last_vrtx = self.heap.pop()
+    Node* last_node = heap.back();
+    heap.pop_back(); 
 
-//     if not self.is_empty():
-//         self.heap[0] = last_vrtx
-//         last_vrtx.idx_in_priority_queue = 0
-//         self.bubble_down(0)
+    if (!isEmpty()) {
+        heap[0] = last_node;
+        last_node->setIdxInPQ(0);
+        bubbleDown(0);
+    }
 
-//     min_vrtx.idx_in_priority_queue = -1 # mark min no longer in heap
+    // mark min node no longer in heap
+    min_node->setIdxInPQ(-1);
 
-//     return min_vrtx
-    return nullptr;
+    return min_node;
 }
 
 bool Pqueue::isEmpty() {
-    // return len(self.heap) == 0
-    return true;
+    return heap.size() == 0;
 }
 
 void Pqueue::updateNodeWeight(Node* node) {
     // new weight has been found for v, bubble up from old idx
-    // self.bubble_up(v.idx_in_priority_queue)
+    bubbleUp(node->getIdxInPQ());
 
 }
 
@@ -83,28 +77,33 @@ void Pqueue::bubbleUp(int i) {
 }
 
 void Pqueue::bubbleDown(int i) {
-//     n = len(self.heap)
+    int idx = i;
+    int n = heap.size();
 
-//     while True:
-//         #get indexes of left and right childern of idx
-//         left = (2 * idx) + 1
-//         right = (2 * idx) + 2
+    while (true) {
+        // get indexes of left and right childern of idx
+        int left_child_idx = (2 * idx) + 1;
+        int right_child_idx = (2 * idx) + 2;
 
-//         # assume idx will be the idx of the smaller value d
-//         smaller = idx
+        // assume idx will be the idx of the smaller value d
+        int smaller = idx;
 
-//         # update smaller based on sp of left and right children
-//         if left < n and self.heap[left].d < self.heap[smaller].d:
-//             smaller = left
-
-//         if right < n and self.heap[right].d < self.heap[smaller].d:
-//             smaller = right
-
-//         # if smaller isn't idx swap
-//         if smaller != idx:
-//             self.swap(idx, smaller)
-//             idx = smaller
-//         else:
-//             break
+        // update smaller based on sp of left and right children
+        if (left_child_idx < n && heap[left_child_idx]->getDist() < heap[smaller]->getDist()) {
+            smaller = left_child_idx;
+        }
+        
+        if (right_child_idx < n && heap[right_child_idx]->getDist() < heap[smaller]->getDist()) {
+            smaller = right_child_idx;
+        }
+        
+        // if smaller isn't idx swap
+        if (smaller != idx) {
+            swap(idx, smaller);
+            idx = smaller;
+        } else {
+            break;
+        }
+    } 
 }
         

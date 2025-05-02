@@ -150,11 +150,9 @@ TEST_F(PQTest, TestInsertBubblesNodeUp) {
     Node* longmont = new Node("Longmont");
     Node* niwot = new Node("Niwot");
     
-    
     longmont->setDist(3);
     niwot->setDist(2);
     boulder->setDist(1);
-
     
     test_pq->insert(longmont);
     test_pq->insert(niwot);
@@ -163,6 +161,81 @@ TEST_F(PQTest, TestInsertBubblesNodeUp) {
     vector<Node*> heap = test_pq->getHeap();
     
     EXPECT_EQ(heap[0], boulder);
+}
+
+TEST_F(PQTest, TestUpdateNodeWeight) {
+    Node* longmont = new Node("Longmont");
+    Node* niwot = new Node("Niwot");
+    
+    longmont->setDist(3);
+    niwot->setDist(2);
+    boulder->setDist(1);
+    
+    test_pq->insert(longmont);
+    test_pq->insert(niwot);
+    test_pq->insert(boulder);
+        
+    EXPECT_EQ(test_pq->getHeap()[0], boulder);
+    
+    niwot->setDist(0);
+    test_pq->updateNodeWeight(niwot);
+    
+    EXPECT_EQ(test_pq->getHeap()[0], niwot);
+}
+
+TEST_F(PQTest, TestPQIsEmpty) {
+    EXPECT_EQ(test_pq->getHeap().size(), 0);
+    test_pq->insert(boulder);
+    EXPECT_NE(test_pq->getHeap().size(), 0);
+}
+
+TEST_F(PQTest, TestBubbleDown) {
+    Node* longmont = new Node("Longmont");
+    Node* niwot = new Node("Niwot");
+    
+    longmont->setDist(3);
+    niwot->setDist(2);
+    boulder->setDist(1);
+    
+    test_pq->insert(longmont);
+    test_pq->insert(niwot);
+    test_pq->insert(boulder);
+    
+    EXPECT_EQ(test_pq->getHeap()[0], boulder);
+    
+    boulder->setDist(5);
+    
+    test_pq->bubbleDown(boulder->getIdxInPQ());
+    
+    int endIdx = test_pq->getHeap().size() - 1;
+    
+    EXPECT_EQ(test_pq->getHeap()[0], niwot);
+    EXPECT_EQ(test_pq->getHeap()[endIdx], boulder);
+}
+
+TEST_F(PQTest, TestGetAndDeleteMin) {
+    Node* longmont = new Node("Longmont");
+    Node* niwot = new Node("Niwot");
+    Node* hygiene = new Node("Hygiene");
+    
+    hygiene->setDist(4);
+    longmont->setDist(3);
+    niwot->setDist(2);
+    boulder->setDist(1);
+    
+    test_pq->insert(hygiene);
+    test_pq->insert(longmont);
+    test_pq->insert(niwot);
+    test_pq->insert(boulder);
+    
+    EXPECT_EQ(test_pq->getHeap()[0], boulder);
+    
+    Node* min = test_pq->getAndDeleteMin();
+    
+    EXPECT_EQ(min, boulder);
+    EXPECT_NE(test_pq->getHeap()[0], boulder);
+    EXPECT_EQ(test_pq->getHeap()[0], niwot);
+    
 }
 
 // Graph/Edge/Node Integration Tests
