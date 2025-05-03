@@ -15,9 +15,6 @@ class Graph {
 private:
     vector<Node*> nodes; // vector of nodes (cities)
     vector<Edge*> edges; // vector of edges (roads)
-
-    vector<Edge*> search_edges; // used in sp discovery
-    vector<Node*> search_nodes; // used in sp discovery
     
 public:
     Graph(); // Constructor
@@ -29,6 +26,13 @@ public:
     
     // return set of edges from a city to other cities
     set<Edge*> getAdjacentEdges(Node* node); 
+    
+    // sp with dijkstra's algorithm using pqueue
+    vector<Node*> computeShortestPath(Node* start, Node* end);
+    
+    // build path from node through parent chain
+    vector<Node*> buildPath(Node* node);
+    
 
 };
 

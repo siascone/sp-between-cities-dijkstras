@@ -8,6 +8,7 @@ Node::Node(string n) {
     dist = numeric_limits<double>::infinity();
     visited = false;
     parent = nullptr;
+    idx_in_pq = -1;
 }
 
 Node::~Node() {}
