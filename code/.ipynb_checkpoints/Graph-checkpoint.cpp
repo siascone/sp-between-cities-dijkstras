@@ -36,10 +36,10 @@ set<Edge*> Graph::getAdjacentEdges(Node* node) {
         }
     }
     
-    cout << "------- NEIGHBOR EDGES -------" << endl;
-    for (Edge* edge : adjacentEdges) {
-        cout << "A: " << edge->getNodeA()->getName() << " B: " << edge->getNodeB()->getName() << endl;
-    }
+    // cout << "------- NEIGHBOR EDGES -------" << endl;
+    // for (Edge* edge : adjacentEdges) {
+    //     cout << "A: " << edge->getNodeA()->getName() << " B: " << edge->getNodeB()->getName() << endl;
+    // }
     
     return adjacentEdges;
 }
@@ -56,7 +56,7 @@ vector<Node*> Graph::computeShortestPath(Node* start, Node* end){
         Node* curr_node = pq->getAndDeleteMin();
         curr_node->setVisited(true);
         
-        cout << endl << curr_node->getName() << endl << endl;
+        // cout << endl << curr_node->getName() << endl << endl;
         
         // find neighbor edges of curr_node
         set<Edge*> neighbor_edges = this->getAdjacentEdges(curr_node);
@@ -80,6 +80,7 @@ vector<Node*> Graph::computeShortestPath(Node* start, Node* end){
     // build path from end node
     vector<Node*> sp = this->buildPath(end);
     
+    // print path and weights to console
     // for (int i = 0; i < static_cast<int>(sp.size()); i++) {
     //     cout << "name: "<< sp[i]->getName() << " dist: " << sp[i]->getDist() << endl;
     // }
@@ -103,22 +104,3 @@ vector<Node*> Graph::buildPath(Node* node) {
     
     return sp;
 }
-
-
-// def buildPath(vertex):
-//     path = []
-//     curr_vrtx = vertex
-    
-//     # as long as there is a parent of the current vertex add it to the front of path
-//     while curr_vrtx.pi is not None:
-//         # get parent x and y
-//         pi_x = curr_vrtx.pi.x
-//         pi_y = curr_vrtx.pi.y
-//         # add to front of path, building backwards
-//         path.insert(0, (pi_x, pi_y))
-        
-//         # update current vertex to parent
-//         curr_vrtx = curr_vrtx.pi
-        
-//     return path
-

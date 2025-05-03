@@ -1162,7 +1162,8 @@ CMakeFiles/run_tests.dir/tests/test_hw.cpp.o: ../tests/test_hw.cpp \
   ../code/Edge.h \
   ../code/Pqueue.h \
   ../code/Node.h \
-  ../code/Pqueue.h
+  ../code/Pqueue.h \
+  ../tests/graph_builders.cpp
 
 
 /usr/include/c++/11/math.h:
@@ -1402,6 +1403,8 @@ CMakeFiles/run_tests.dir/tests/test_hw.cpp.o: ../tests/test_hw.cpp \
 /usr/include/c++/11/exception:
 
 /usr/include/c++/11/bits/invoke.h:
+
+../tests/graph_builders.cpp:
 
 /usr/include/c++/11/cstdint:
 

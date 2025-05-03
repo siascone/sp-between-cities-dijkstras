@@ -18,6 +18,7 @@
 #include "../code/Graph.h"
 #include "../code/Node.h"
 #include "../code/Pqueue.h"
+#include "graph_builders.cpp"
 
 using namespace std;
 
@@ -279,6 +280,7 @@ TEST_F(GraphTest, TestGetAdjacentEdges) {
     EXPECT_NE(adjEdges.find(boulder_hygiene), adjEdges.end());
 }
 
+// forward declaration of graph builders. See ./graph_builders.cpp
 Graph* mkSmallLocalGraph();
 Graph* mkLargeLocalGraph();
 
@@ -315,11 +317,6 @@ TEST_F(GraphTest, TestComputeShortestPathLafayetteToHygiene) {
     Node* longmont = nodes[5];
     Node* hygiene = nodes[4];
     
-    // cout << lafayette->getName() << endl;
-    // cout << erie->getName() << endl;
-    // cout << longmont->getName() << endl;
-    // cout << hygiene->getName() << endl;
-    
     EXPECT_EQ(hygiene->getDist(), numeric_limits<double>::infinity());
     
     vector<Node*> sp_lafayette_hygiene = lgGraph->computeShortestPath(lafayette, hygiene);
@@ -328,168 +325,16 @@ TEST_F(GraphTest, TestComputeShortestPathLafayetteToHygiene) {
     // cout << endl << sp_lafayette_hygiene[0]->getName() << endl;
     
     EXPECT_EQ(sp_lafayette_hygiene.size(), 4);
-//     EXPECT_EQ(sp_lafayette_hygiene[0], lafayette);
-//     EXPECT_EQ(sp_lafayette_hygiene[1], gunbarrel);
-//     EXPECT_EQ(sp_lafayette_hygiene[2], niwot);
-//     EXPECT_EQ(sp_lafayette_hygiene[3], hygiene);
+    EXPECT_EQ(sp_lafayette_hygiene[0], lafayette);
+    EXPECT_EQ(sp_lafayette_hygiene[1], erie);
+    EXPECT_EQ(sp_lafayette_hygiene[2], longmont);
+    EXPECT_EQ(sp_lafayette_hygiene[3], hygiene);
     
-//     // convert double to string for comparison
-//     string hygiene_dist_string = to_string(hygiene->getDist());
-//     string final_dist_string = to_string(25.8);
+    // convert double to string for comparison
+    string hygiene_dist_string = to_string(hygiene->getDist());
+    string final_dist_string = to_string(22.4);
     
-//     EXPECT_EQ(hygiene_dist_string, final_dist_string);
+    EXPECT_EQ(hygiene_dist_string, final_dist_string);
     
 
 } 
-
-// ------------------ Helper Graph Builders ------------------ 
-
-Graph* mkSmallLocalGraph() {
-      Graph* smGraph(new Graph());
-    
-      Node* boulder(new Node("Boulder"));
-      Node* longmont(new Node("Longmont"));
-      Node* gunbarrel(new Node("Gunbarrel"));
-      Node* niwot(new Node("Niwot"));
-      Node* hygiene(new Node("Hygiene"));
-
-      Edge* boulder_hygiene(new Edge(boulder, hygiene, 15.3));
-      Edge* boulder_niwot(new Edge(boulder, niwot, 8.7));
-      Edge* boulder_gunbarrel(new Edge(boulder, gunbarrel, 7.8));
-      Edge* hygiene_niwot(new Edge(hygiene, niwot, 8));
-      Edge* hygiene_longmont(new Edge(hygiene, longmont, 5.5));
-      Edge* niwot_longmont(new Edge(niwot, longmont, 7.1));
-      Edge* niwot_gunbarrel(new Edge(niwot, gunbarrel, 4.5));
-      Edge* gunbarrel_longmont(new Edge(gunbarrel, longmont, 12.2));
-    
-      smGraph->addNode(boulder);
-      smGraph->addNode(longmont);
-      smGraph->addNode(gunbarrel);
-      smGraph->addNode(niwot);
-      smGraph->addNode(hygiene);
-
-      smGraph->addEdge(boulder_hygiene);
-      smGraph->addEdge(boulder_niwot);
-      smGraph->addEdge(boulder_gunbarrel);
-      smGraph->addEdge(hygiene_niwot);
-      smGraph->addEdge(hygiene_longmont);
-      smGraph->addEdge(niwot_longmont);
-      smGraph->addEdge(niwot_gunbarrel);
-      smGraph->addEdge(gunbarrel_longmont);
-
-      return smGraph;
-}
-
-Graph* mkLargeLocalGraph() {
-    Graph* lgGraph(new Graph());
-    
-    Node* boulder(new Node("Boulder"));
-    Node* gunbarrel(new Node("Gunbarrel"));
-    Node* niwot(new Node("Niwot"));
-    Node* lyons(new Node("Lyons"));
-    Node* hygiene(new Node("Hygiene"));
-    Node* longmont(new Node("Longmont"));
-    Node* erie(new Node("Erie"));
-    Node* lafayette(new Node("Lafayette"));
-    Node* louisville(new Node("Louisville"));
-    Node* superior(new Node("Superior"));
-    Node* eldorado_springs(new Node("Eldorado Springs"));
-    Node* broomfield(new Node("Broomfield"));
-    
-    // outgoing from boulder
-    Edge* boulder_gunbarrel(new Edge(boulder, gunbarrel, 7.8));
-    Edge* boulder_niwot(new Edge(boulder, niwot, 8.7));
-    Edge* boulder_hygiene(new Edge(boulder, hygiene, 15.3));
-    Edge* boulder_lyons(new Edge(boulder, lyons, 15.9));
-    Edge* boulder_erie(new Edge(boulder, erie, 14.2));
-    Edge* boulder_lafayette(new Edge(boulder, lafayette, 11.9));
-    Edge* boulder_louisville(new Edge(boulder, louisville, 9.9));
-    Edge* boulder_superior(new Edge(boulder, superior, 8.4));
-    Edge* boulder_eldorado_springs(new Edge(boulder, eldorado_springs, 8.6));
-    
-    // outgoing from gunbarrel
-    Edge* gunbarrel_niwot(new Edge(gunbarrel, niwot, 4.5));
-    Edge* gunbarrel_longmont(new Edge(gunbarrel, longmont, 12.2));
-    Edge* gunbarrel_erie(new Edge(gunbarrel, erie, 9.9));
-    Edge* gunbarrel_lafayette(new Edge(gunbarrel, lafayette, 10));
-    
-    // outgoing from lyons
-    Edge* lyons_hygiene(new Edge(lyons, hygiene, 6.4));
-    Edge* lyons_longmont(new Edge(lyons, longmont, 11.9));
-    
-    // outgoing from niwot
-    Edge* niwot_hygiene(new Edge(niwot, hygiene, 8));
-    Edge* niwot_longmont(new Edge(niwot, longmont, 7.1));
-    
-    // outgoing from hygiene
-    Edge* hygiene_longmont(new Edge(hygiene, longmont, 5.5));
-    
-    // outgoing from longmont
-    Edge* longmont_erie(new Edge(longmont, erie, 10.7));
-    
-    // outgoing from erie
-    Edge* erie_lafayette(new Edge(erie, lafayette, 6.2));
-    Edge* erie_broomfield(new Edge(erie, broomfield, 11.5));
-    
-    // outgoing from lafayette
-    Edge* lafayette_louisville(new Edge(lafayette, louisville, 3.3));
-    Edge* lafayette_broomfield(new Edge(lafayette, broomfield, 5.6));
-    
-    // outgoing from louisville
-    Edge* louisville_superior(new Edge(louisville, superior, 3.6));
-    Edge* louisville_broomfield(new Edge(louisville, broomfield, 6.5));
-    
-    // outgoing from superior
-    Edge* superior_eldorado_springs(new Edge(superior, eldorado_springs, 7.2));
-    Edge* superior_broomfield(new Edge(superior, broomfield, 6.3));
-    
-    // outgoing from eldorado springs
-    Edge* eldorado_springs_broomfield(new Edge(eldorado_springs, broomfield, 12.8));
-    
-    // add nodes to graph
-    lgGraph->addNode(boulder);
-    lgGraph->addNode(gunbarrel);
-    lgGraph->addNode(niwot);
-    lgGraph->addNode(lyons);
-    lgGraph->addNode(hygiene);
-    lgGraph->addNode(longmont);
-    lgGraph->addNode(erie);
-    lgGraph->addNode(lafayette);
-    lgGraph->addNode(louisville);
-    lgGraph->addNode(superior);
-    lgGraph->addNode(eldorado_springs);
-    lgGraph->addNode(broomfield);
-    
-    // add edges to graph
-    lgGraph->addEdge(boulder_gunbarrel);
-    lgGraph->addEdge(boulder_niwot);
-    lgGraph->addEdge(boulder_hygiene);
-    lgGraph->addEdge(boulder_lyons);
-    lgGraph->addEdge(boulder_erie);
-    lgGraph->addEdge(boulder_lafayette);
-    lgGraph->addEdge(boulder_louisville);
-    lgGraph->addEdge(boulder_superior);
-    lgGraph->addEdge(boulder_eldorado_springs);
-    lgGraph->addEdge(gunbarrel_niwot);
-    lgGraph->addEdge(gunbarrel_longmont);
-    lgGraph->addEdge(gunbarrel_erie);
-    lgGraph->addEdge(gunbarrel_lafayette);
-    lgGraph->addEdge(lyons_hygiene);
-    lgGraph->addEdge(lyons_longmont);
-    lgGraph->addEdge(niwot_hygiene);
-    lgGraph->addEdge(niwot_longmont);
-    lgGraph->addEdge(hygiene_longmont);
-    lgGraph->addEdge(longmont_erie);
-    lgGraph->addEdge(erie_lafayette);
-    lgGraph->addEdge(erie_broomfield);
-    lgGraph->addEdge(lafayette_louisville);
-    lgGraph->addEdge(lafayette_broomfield);
-    lgGraph->addEdge(louisville_superior);
-    lgGraph->addEdge(louisville_broomfield);
-    lgGraph->addEdge(superior_eldorado_springs);
-    lgGraph->addEdge(superior_broomfield);
-    lgGraph->addEdge(eldorado_springs_broomfield);
-    
-    return lgGraph;
-                     
-}
