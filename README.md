@@ -1,6 +1,6 @@
 # Shortest Path Finder with Dijkstra’s Algorithm
 
-A simple C++ application that finds the shortest path between cities using Dijkstra’s Algorithm on a weighted graph.
+A simple C++ application that finds the shortest path between cities using Dijkstra’s Algorithm on a weighted bidirectional graph.
 
 ## 🚀 Motivation
 
