@@ -14,14 +14,14 @@ private:
 public:
     Pqueue(); // constructor
     ~Pqueue(); // deconstructor
-    vector<Node*> getHeap();
-    void insert(Node* node);
-    Node* getAndDeleteMin();
-    bool isEmpty();
-    void updateNodeWeight(Node* node);
-    void swap(int i, int j);
-    void bubbleUp(int i);
-    void bubbleDown(int i);
+    vector<Node*> getHeap(); // getter for heap
+    void insert(Node* node); // insert a node into the heap
+    Node* getAndDeleteMin(); // retreive and remove min ele of heap
+    bool isEmpty(); // check if heap is empty
+    void updateNodeWeight(Node* node); // update node weight and position in heap
+    void swap(int i, int j); // swap two elements of heap
+    void bubbleUp(int i); // bubble up ele at index i in heap
+    void bubbleDown(int i); // bubble down ele at index i in heap
 };
 
 #endif // PQUEUE_H__

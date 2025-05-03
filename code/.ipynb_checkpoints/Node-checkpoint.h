@@ -18,15 +18,15 @@ private:
 public:
     Node(string n); // constructor
     ~Node(); // deconstructor
-    string getName(); // return name of node
-    double getDist(); // return distance of node
-    void setDist(double d);
+    string getName(); // getter for name of node
+    double getDist(); // getter for distance of node
+    void setDist(double d); // setter for distance of node
     bool isVisited(); // return true or false if node has been visited
-    void setVisited(bool val);
+    void setVisited(bool val); // set visited state of node, used in sp calculation
     Node* getParent(); // getter for node parent
     void setParent(Node* node); // setter for node parent
-    int getIdxInPQ();
-    void setIdxInPQ(int idx);
+    int getIdxInPQ(); // getter for idx_in_pq
+    void setIdxInPQ(int idx); // setter for idx_in_pq
     
 };
 

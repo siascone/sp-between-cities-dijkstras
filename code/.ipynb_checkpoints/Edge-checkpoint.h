@@ -17,7 +17,7 @@ public:
     ~Edge(); // deconstructor
     Node* getNodeA(); // get node a
     Node* getNodeB(); // get node b
-    double getWeight();
+    double getWeight(); // get edge weight
     void setWeight(int val); // setter for edge weight
 };
 
