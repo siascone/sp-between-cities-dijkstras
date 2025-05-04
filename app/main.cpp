@@ -36,11 +36,7 @@ int main(){
          };
         
     bool processing = true;
-    string input_1;
-    string input_2;
-    int start_city;
-    int dest_city;
-    
+
     Graph* lgGraph = mkLargeLocalGraph();
     
     greeting();
@@ -48,22 +44,31 @@ int main(){
     city_selection_options();
     
     while (processing) {
-        // clear inputs for loops after first round
+        // insure clear cin and fresh inputs for each iteration
         cin.clear(); 
-        input_1 = "";
-        input_2 = "";
-        start_city = -1;
-        dest_city = -1;
+        string input_1;
+        string input_2;
+        int start_city;
+        int dest_city;
         
         // Get start city from user
-        cout << "Pease select a starting city by number (e.g. 3): ";
+        cout << "Pease select a starting city by number (e.g. 8): ";
         cin >> input_1;
+        
+        if (cin.fail()) {
+            cout << endl;
+            cout << "Oops. Something went wrong. Please try again.\033[0m" << endl;
+            cout << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        } 
         
         try {
             start_city = stoi(input_1);
         } catch (...) { // catch attempts to convert letters to number
             cout << endl;
-            cout << "\033[1mInvalid input. Input mist be an integer 0-12.\033[0m" << endl <<endl;
+            cout << "\033[1mInvalid input. Input mist be an integer 0-12. Please try again.\033[0m" 
+                 << endl <<endl;
             continue;
         }
         
@@ -71,7 +76,7 @@ int main(){
         if (start_city < 0 || start_city > 12) 
         {
             cout << endl;
-            cout << "\033[1mInvalid input. Input must be an integer 0-12.\033[0m";
+            cout << "\033[1mInvalid input. Input must be an integer 0-12. Please try again.\033[0m";
             cout << endl;
             cin.clear();
             cin.ignore(1000, '\n');
@@ -82,11 +87,6 @@ int main(){
             break;
         }
         
-        // if (dest_city == 0) {
-        //     processing = false;
-        //     break;
-        // }
-        
         cout << "You selected " 
              << "\033[1m" << cities[start_city - 1] 
              << "\033[0m" << " as your starting city." 
@@ -94,14 +94,23 @@ int main(){
 
         // Get destination city from user
         cin.clear();
-        cout << endl << "Please select a destination city by number (e.g. 3): ";
+        cout << endl << "Please select a destination city by number (e.g. 5): ";
         cin >> input_2;
+        
+        if (cin.fail()) {
+            cout << endl;
+            cout << "Oops. Something went wrong. Please try again.\033[0m" << endl;
+            cout << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        } 
         
         try {
             dest_city = stoi(input_2);
         } catch (...) { // catch attempts to convert letters to number
             cout << endl;
-            cout << "\033[1mInvalid input. Input mist be an integer 0-12.\033[0m" << endl <<endl;
+            cout << "\033[1mInvalid input. Input mist be an integer 0-12. Please try again.\033[0m" 
+                 << endl <<endl;
             continue;
         }
         
@@ -109,7 +118,7 @@ int main(){
         if (dest_city < 0 || dest_city > 12) 
         {
             cout << endl;
-            cout << "\033[1mInvalid input. Input must be an integer 0-12.\033[0m";
+            cout << "\033[1mInvalid input. Input must be an integer 0-12. Please try again.\033[0m";
             cout << endl;
             cin.clear();
             cin.ignore(1000, '\n');
@@ -130,15 +139,18 @@ int main(){
         this_thread::sleep_for(chrono::milliseconds(1500)); // 1.5 second delay
         
         // calculate sp
-        Node* start = lgGraph->findNode(cities[start_city - 1]);
-        Node* end = lgGraph->findNode(cities[dest_city - 1]);
+        Node* start_node = lgGraph->findNode(cities[start_city - 1]);
+        Node* end_node = lgGraph->findNode(cities[dest_city - 1]);
         
-        if (start == nullptr || end == nullptr) {
-            cout << endl << "Something went wrong on our end. Please try again." << endl << endl;
-            continue;
-        }
+        cout << "DEBUGGING start node: " << start_node->getName() << endl;
+        cout << "DEBUGGING end node: " << end_node->getName() << endl;
         
-        vector<Node*> sp = lgGraph->computeShortestPath(start, end);
+        // if (start == nullptr || end == nullptr) {
+        //     cout << endl << "Something went wrong on our end. Please try again." << endl << endl;
+        //     continue;
+        // }
+        
+        vector<Node*> sp = lgGraph->computeShortestPath(start_node, end_node);
         
         // output sp information
         double total_dist = sp[sp.size() - 1]->getDist();
@@ -157,7 +169,7 @@ int main(){
              << "\033[0m" << " miles." 
              << endl << endl;
         
-        
+        // reloop message
         cout << "--------------------------------------------------------------------------------" << endl << endl; 
         
         cout << "If you would like to calculate a different route" << endl;
