@@ -131,24 +131,6 @@ Manages all nodes and edges.
     };
 ```
 
-## ✅ Current Status
-
-- ✅ All four core classes (`Node`, `Edge`, `Pqueue`, `Graph`) implemented
-- ✅ Unit and integration tests completed with TDD
-- ✅ Dijkstra's algorithm correctly computes shortest paths
-
-## 🛠️ Next Steps (Planned UI)
-- Add CLI interface:
-  - Display a list of 12 local cities
-  - Allow user to choose a start and end city
-  - Output the total distance and list of cities along the shortest route
-  - Prompt user to search again or exit
-
-## 🌟 Stretch Features
-- Load actual city/road data from external file (e.g. CSV)
-- Display ASCII art of the graph and path
-- Implement support for alternate (2nd shortest) routes
-
 ## 📚 Key Concepts
 
 - **Dijkstra’s Algorithm**: Greedy algorithm for finding shortest paths in weighted graphs
@@ -252,11 +234,29 @@ Manages all nodes and edges.
     // TODO Add example node and edge vectors...
 ```
 
+## ✅ Current Status
+
+- ✅ All four core classes (`Node`, `Edge`, `Pqueue`, `Graph`) implemented
+- ✅ Unit and integration tests completed with TDD
+- ✅ Dijkstra's algorithm correctly computes shortest paths
+
+## 🛠️ Next Steps (Planned UI)
+- Add CLI interface:
+  - Display a list of 12 local cities
+  - Allow user to choose a start and end city
+  - Output the total distance and list of cities along the shortest route
+  - Prompt user to search again or exit
+  
 ## ⚠️ Technical Hurdles
 
 - Efficiently updating node priorities in the heap
 - Correct memory management and ownership in C++
 - Debugging graph traversal logic and edge cases
+
+## 🌟 Stretch Features
+- Load actual city/road data from external file (e.g. CSV)
+- Display ASCII art of the graph and path
+- Implement support for alternate (2nd shortest) routes
 
 ## ✨ Why It’s Interesting
 
