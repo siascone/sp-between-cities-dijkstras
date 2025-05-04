@@ -36,11 +36,6 @@ set<Edge*> Graph::getAdjacentEdges(Node* node) {
         }
     }
     
-    // cout << "------- NEIGHBOR EDGES -------" << endl;
-    // for (Edge* edge : adjacentEdges) {
-    //     cout << "A: " << edge->getNodeA()->getName() << " B: " << edge->getNodeB()->getName() << endl;
-    // }
-    
     return adjacentEdges;
 }
 
@@ -55,16 +50,16 @@ vector<Node*> Graph::computeShortestPath(Node* start, Node* end){
         // retreive and process nearest node
         Node* curr_node = pq->getAndDeleteMin();
         curr_node->setVisited(true);
-        
-        // cout << endl << curr_node->getName() << endl << endl;
-        
+                
         // find neighbor edges of curr_node
         set<Edge*> neighbor_edges = this->getAdjacentEdges(curr_node);
         
+        // explore neighbor edges of current node and update accordingly
         for (Edge* edge : neighbor_edges) {
             Node* neighbor_node = edge->getNodeB();
             double weight = edge->getWeight();
             
+            // if neighbor unvisited and distance can be relaxed update and add node to queue
             if (!neighbor_node->isVisited() && curr_node->getDist() + weight < neighbor_node->getDist()) {
                 neighbor_node->setDist(curr_node->getDist() + weight);
                 neighbor_node->setParent(curr_node);
@@ -80,25 +75,18 @@ vector<Node*> Graph::computeShortestPath(Node* start, Node* end){
     // build path from end node
     vector<Node*> sp = this->buildPath(end);
     
-    // print path and weights to console
-    // for (int i = 0; i < static_cast<int>(sp.size()); i++) {
-    //     cout << "name: "<< sp[i]->getName() << " dist: " << sp[i]->getDist() << endl;
-    // }
-    
     return sp;
 }
 
 vector<Node*> Graph::buildPath(Node* node) {
     vector<Node*> sp;
     sp.insert(sp.begin(), node);
+    
     Node* curr_node = node;
-    
-    // cout << "building path..." << endl;
-    
-    while (curr_node->getParent() != nullptr) {
-        // cout << endl << curr_node->getParent()->getName() << endl;
-        sp.insert(sp.begin(), curr_node->getParent());
         
+    while (curr_node->getParent() != nullptr) {
+        // add parent to path and update curr_node to parent
+        sp.insert(sp.begin(), curr_node->getParent());
         curr_node = curr_node->getParent();
     }
     

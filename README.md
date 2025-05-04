@@ -63,8 +63,97 @@ Manages all nodes and edges.
 ## 📚 Key Concepts
 
 - **Dijkstra’s Algorithm**: Greedy algorithm for finding shortest paths in weighted graphs
-- **Min-Heap**: Used to efficiently retrieve the node with the lowest tentative distance
+
+```cpp
+    vector<Node*> Graph::computeShortestPath(Node* start, Node* end){
+        // set start node dist, all nodes initiated to infinity
+        start->setDist(0);
+
+        Pqueue* pq = new Pqueue();
+        pq->insert(start);
+
+        while (!pq->isEmpty()) {
+            // retreive and process nearest node
+            Node* curr_node = pq->getAndDeleteMin();
+            curr_node->setVisited(true);
+
+            // find neighbor edges of curr_node
+            set<Edge*> neighbor_edges = this->getAdjacentEdges(curr_node);
+
+            // explore neighbor edges of current node and update accordingly
+            for (Edge* edge : neighbor_edges) {
+                Node* neighbor_node = edge->getNodeB();
+                double weight = edge->getWeight();
+
+                // if neighbor unvisited and distance can be relaxed update and add node to queue
+                if (!neighbor_node->isVisited() && curr_node->getDist() + weight < neighbor_node->getDist()) {
+                    neighbor_node->setDist(curr_node->getDist() + weight);
+                    neighbor_node->setParent(curr_node);
+                    if (neighbor_node->getIdxInPQ() == -1) { // neighbor is not in queue
+                        pq->insert(neighbor_node);
+                    } else { // neighbor in queue and was relaxed, bubble up
+                        pq->updateNodeWeight(neighbor_node);
+                    }
+                }
+            }
+        }
+
+        // build path from end node
+        vector<Node*> sp = this->buildPath(end);
+
+        return sp;
+    }
+```
+
+- **Min-Heap**: Used to efficiently retrieve the node with the lowest tentative distance - implemented as a priority queue
+
+```cpp
+    class Pqueue {
+    private:
+        vector<Node*> heap;
+
+    public:
+        Pqueue(); // constructor
+        ~Pqueue(); // deconstructor
+        vector<Node*> getHeap(); // getter for heap
+        void insert(Node* node); // insert a node into the heap
+        Node* getAndDeleteMin(); // retreive and remove min ele of heap
+        bool isEmpty(); // check if heap is empty
+        void updateNodeWeight(Node* node); // update node weight and position in heap
+        void swap(int i, int j); // swap two elements of heap
+        void bubbleUp(int i); // bubble up ele at index i in heap
+        void bubbleDown(int i); // bubble down ele at index i in heap
+    };
+```
 - **Graphs**: Represented using adjacency lists with nodes and weighted edges
+
+```cpp
+    class Graph {
+
+    private:
+        vector<Node*> nodes; // vector of nodes (cities)
+        vector<Edge*> edges; // vector of edges (roads)
+
+    public:
+        Graph(); // Constructor
+        ~Graph(); // Deconstructor
+        vector<Node*> getNodes(); // returns vector of nodes (cities)
+        vector<Edge*> getEdges(); // returns vector of edges (roads between cities)
+        void addNode(Node* n); // add a node to the graph
+        void addEdge(Edge* e); // add an edge to the graph
+
+        // return set of edges from a city to other cities
+        set<Edge*> getAdjacentEdges(Node* node); 
+
+        // sp with dijkstra's algorithm using pqueue
+        vector<Node*> computeShortestPath(Node* start, Node* end);
+
+        // build path from node through parent chain
+        vector<Node*> buildPath(Node* node);
+
+
+    };
+```
 
 ## ⚠️ Technical Hurdles
 
