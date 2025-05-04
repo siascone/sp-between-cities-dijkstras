@@ -2,11 +2,17 @@
 
 A simple C++ application that finds the shortest path between cities using Dijkstra’s Algorithm on a weighted, bidirectional graph.
 
-## 🚀 Motivation
+## 🚀 Motivation and Interests
+
+--->TODO: Rewrite motivation and intersts<---
 
 Mapping and navigation systems are fascinating examples of real-world graph applications. This project explores how shortest path algorithms power those systems. By implementing Dijkstra’s algorithm from scratch, this project serves as a hands-on deep dive into graph theory, pathfinding, and C++ data structures.
 
+Shortest path problems show up in GPS routing, networking, logistics, and more. Building this project from scratch makes those concepts tangible and opens the door to exploring advanced topics like A*, heuristics, or dynamic graph data.
+
 ## 🧠 What It Does
+
+--->TODO: Provide more detail here<---
 
 - Represents cities as nodes in a graph
 - Represents roads as weighted edges (distance between cities)
@@ -133,6 +139,9 @@ Manages all nodes and edges.
 
 ## 📚 Key Concepts
 
+--->TODO: Elaborate on each key concept and discuss provided code<---
+
+
 - **Dijkstra’s Algorithm**: Greedy algorithm for finding shortest paths in weighted graphs
 
 ```cpp
@@ -249,17 +258,19 @@ Manages all nodes and edges.
   
 ## ⚠️ Technical Hurdles
 
+--->TODO: Expand on experience with these technical hurdles<---
+
+
 - Efficiently updating node priorities in the heap
 - Correct memory management and ownership in C++
 - Debugging graph traversal logic and edge cases
 
-## 🌟 Stretch Features
+## 🌟 Future Features
+
+--->TODO: Explore other possible features and reorder based on feasibility<---
+
 - Load actual city/road data from external file (e.g. CSV)
 - Display ASCII art of the graph and path
 - Implement support for alternate (2nd shortest) routes
-
-## ✨ Why It’s Interesting
-
-Shortest path problems show up in GPS routing, networking, logistics, and more. Building this project from scratch makes those concepts tangible and opens the door to exploring advanced topics like A*, heuristics, or dynamic graph data.
 
 ---
