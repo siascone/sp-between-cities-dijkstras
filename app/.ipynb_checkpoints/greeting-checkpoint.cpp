@@ -3,7 +3,7 @@
 using namespace std;
 
 void greeting() {
-    cout << endl << "Welcome to the Boulder Aare SP Finder - Your Fast Route Planner for Boulder, CO!" << endl << endl;
+    cout << endl << "Welcome to the Boulder Area SP Finder - Your Fast Route Planner for Boulder, CO!" << endl << endl;
     cout << "Discover the most efficient baths between Boulder and its 11 neighboring cities" << endl;
     cout << "using this interactive map-based tool!" << endl << endl;
     
@@ -14,7 +14,7 @@ void greeting() {
     cout << "Area SP Finder quickly calculates the shortest path based on relative travel" << endl;
     cout << "distances - all designed to help you find the best route with certainty." << endl << endl;
     
-    cout << "Get Started by taking a look at the city options below." << endl;
+    cout << "Get started by taking a look at the city options below." << endl;
     
     cout << " -> Enter 0 at anytime to quit." << endl << endl;
     

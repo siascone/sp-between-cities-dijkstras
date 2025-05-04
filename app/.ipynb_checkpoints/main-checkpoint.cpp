@@ -80,6 +80,7 @@ int main(){
             cout << endl;
             cin.clear();
             cin.ignore(1000, '\n');
+            continue;
         } 
         
         if (start_city == 0) {
@@ -122,6 +123,7 @@ int main(){
             cout << endl;
             cin.clear();
             cin.ignore(1000, '\n');
+            continue;
         } 
         
         if (dest_city == 0) {
@@ -172,12 +174,14 @@ int main(){
         // reloop message
         cout << "--------------------------------------------------------------------------------" << endl << endl; 
         
-        cout << "If you would like to calculate a different route" << endl;
+        // cout << "If you would like to calculate a different route" << endl;
+        
+        processing = false;
     }
     
     // add delay for UI effect upon exit. 
-    this_thread::sleep_for(chrono::milliseconds(500));
-    cout << endl << "Thank you for using the Boulder Aare SP Finder. Safe travels!" << endl << endl;
+    this_thread::sleep_for(chrono::milliseconds(1000));
+    cout << endl << "Thank you for using the Boulder Area SP Finder. Safe travels!" << endl << endl;
     
 
     return 0;
