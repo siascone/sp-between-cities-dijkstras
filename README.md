@@ -21,7 +21,7 @@ Shortest path problems show up in GPS routing, networking, logistics, and more. 
   - Total distance of the shortest path
   - Sequence of cities along that path
 
-## Getting Setup and running the program
+## Getting Setup and Running the Program
 
 1. Clone this repo
 - Navigate to project directory
