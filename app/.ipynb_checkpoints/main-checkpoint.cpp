@@ -12,10 +12,10 @@
 // -------------------------------------------------------
 // comment these in when running main application
 // comment these out when building and running test suite
-#include "../code/Graph.cpp"
-#include "../code/Node.cpp"
-#include "../code/Edge.cpp"
-#include "../code/Pqueue.cpp"
+// #include "../code/Graph.cpp"
+// #include "../code/Node.cpp"
+// #include "../code/Edge.cpp"
+// #include "../code/Pqueue.cpp"
 // -------------------------------------------------------
 
 #include "../tests/graph_builders.cpp"
@@ -145,17 +145,9 @@ int main(){
         cout << endl << "Calculating best route. One moment please..." << endl;
         this_thread::sleep_for(chrono::milliseconds(1500)); // 1.5 second delay
         
-        // calculate sp
+        // find nodes and calculate sp
         Node* start_node = lgGraph->findNode(cities[start_city - 1]);
         Node* end_node = lgGraph->findNode(cities[dest_city - 1]);
-        
-        cout << "DEBUGGING start node: " << start_node->getName() << endl;
-        cout << "DEBUGGING end node: " << end_node->getName() << endl;
-        
-        // if (start == nullptr || end == nullptr) {
-        //     cout << endl << "Something went wrong on our end. Please try again." << endl << endl;
-        //     continue;
-        // }
         
         vector<Node*> sp = lgGraph->computeShortestPath(start_node, end_node);
         
@@ -179,9 +171,8 @@ int main(){
         // reloop message
         cout << "--------------------------------------------------------------------------------" << endl << endl; 
         
-        // cout << "If you would like to calculate a different route" << endl;
+        cout << "If you would like to calculate a different route" << endl;
         
-        processing = false;
     }
     
     // add delay for UI effect upon exit. 
