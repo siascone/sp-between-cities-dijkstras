@@ -36,8 +36,6 @@ int main(){
          };
         
     bool processing = true;
-
-    Graph* lgGraph = mkLargeLocalGraph();
     
     greeting();
     
@@ -46,6 +44,7 @@ int main(){
     while (processing) {
         // insure clear cin and fresh inputs for each iteration
         cin.clear(); 
+        Graph* lgGraph = mkLargeLocalGraph();
         string input_1;
         string input_2;
         int start_city;
