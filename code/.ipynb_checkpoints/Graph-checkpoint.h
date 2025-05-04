@@ -24,6 +24,9 @@ public:
     void addNode(Node* n); // add a node to the graph
     void addEdge(Edge* e); // add an edge to the graph
     
+    // return a node based on city name input
+    Node* findNode(string name);
+    
     // return set of edges from a city to other cities
     set<Edge*> getAdjacentEdges(Node* node); 
     

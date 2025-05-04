@@ -1,6 +1,11 @@
 #include "../code/Edge.h"
 #include "../code/Graph.h"
 #include "../code/Node.h"
+#include "../code/Pqueue.h"
+// #include "../code/Edge.cpp"
+// #include "../code/Graph.cpp"
+// #include "../code/Node.cpp"
+// #include "../code/Pqueue.cpp"
 
 Graph* mkSmallLocalGraph() {
     Graph* smGraph(new Graph());

@@ -14,5 +14,9 @@ void greeting() {
     cout << "Area SP Finder quickly calculates the shortest path based on relative travel" << endl;
     cout << "distances - all designed to help you find the best route with certainty." << endl << endl;
     
-    cout << "Ready to explore? Select your starting city and destination to get started!" << endl<< endl;
+    cout << "Get Started by taking a look at the city options below." << endl;
+    
+    cout << " -> Enter 0 at anytime to quit." << endl << endl;
+    
+    cout << "--------------------------------------------------------------------------------" << endl<< endl;
 }

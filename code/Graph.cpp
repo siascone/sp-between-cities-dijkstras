@@ -13,6 +13,19 @@ vector<Node*> Graph::getNodes() {
     return nodes;
 }
 
+Node* Graph::findNode(string name) {
+    Node* node = nullptr;
+    
+    for (int i = 0; static_cast<int>(nodes.size()); i++) {
+        if (nodes[i]->getName() == name) {
+            node = nodes[i];
+            break;
+        }
+    }
+    
+    return node;
+}
+
 vector<Edge*> Graph::getEdges() {
     return edges;
 }
