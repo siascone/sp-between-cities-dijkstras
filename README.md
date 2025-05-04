@@ -24,15 +24,76 @@ Represents a city in the graph.
 - Stores: name, distance, visited state, parent pointer, index in priority queue
 - Methods: accessors/mutators for all fields
 
+```cpp
+    class Node {
+    private:
+        string name; // city name of node
+        double dist; // distance of node
+        bool visited;
+        Node* parent;   // parent of node in sp.
+        int idx_in_pq; // index in priority queue
+
+    public:
+        Node(string n); // constructor
+        ~Node(); // deconstructor
+        string getName(); // getter for name of node
+        double getDist(); // getter for distance of node
+        void setDist(double d); // setter for distance of node
+        bool isVisited(); // return true or false if node has been visited
+        void setVisited(bool val); // set visited state of node, used in sp calculation
+        Node* getParent(); // getter for node parent
+        void setParent(Node* node); // setter for node parent
+        int getIdxInPQ(); // getter for idx_in_pq
+        void setIdxInPQ(int idx); // setter for idx_in_pq
+
+    };
+```
+
 #### `Edge`
 Represents a road between two cities.
 - Stores: pointers to start/end cities and weight
 - Methods: accessors/mutators
 
+```cpp
+    class Edge {
+    private:
+        Node* node_a;  // start node
+        Node* node_b;  // end node
+        double weight; // edge weight
+
+    public:
+        Edge(Node* n1, Node* n2, double w); // constructor
+        ~Edge(); // deconstructor
+        Node* getNodeA(); // get node a
+        Node* getNodeB(); // get node b
+        double getWeight(); // get edge weight
+        void setWeight(int val); // setter for edge weight
+    };
+```
+
 #### `Pqueue`
 Custom min-priority queue for efficient node selection in Dijkstra's algorithm.
 - Based on a vector-backed binary heap
 - Includes: insert, get/delete min, update weight, bubbling helpers
+
+```cpp
+    class Pqueue {
+    private:
+        vector<Node*> heap;
+
+    public:
+        Pqueue(); // constructor
+        ~Pqueue(); // deconstructor
+        vector<Node*> getHeap(); // getter for heap
+        void insert(Node* node); // insert a node into the heap
+        Node* getAndDeleteMin(); // retreive and remove min ele of heap
+        bool isEmpty(); // check if heap is empty
+        void updateNodeWeight(Node* node); // update node weight and position in heap
+        void swap(int i, int j); // swap two elements of heap
+        void bubbleUp(int i); // bubble up ele at index i in heap
+        void bubbleDown(int i); // bubble down ele at index i in heap
+    };
+```
 
 #### `Graph`
 Manages all nodes and edges.
@@ -41,6 +102,34 @@ Manages all nodes and edges.
   - `getAdjacentEdges(Node*)`
   - `computeShortestPath(Node* start, Node* end)`
   - `buildPath(Node*)` – traces back through parents
+  
+```cpp
+    class Graph {
+
+    private:
+        vector<Node*> nodes; // vector of nodes (cities)
+        vector<Edge*> edges; // vector of edges (roads)
+
+    public:
+        Graph(); // Constructor
+        ~Graph(); // Deconstructor
+        vector<Node*> getNodes(); // returns vector of nodes (cities)
+        vector<Edge*> getEdges(); // returns vector of edges (roads between cities)
+        void addNode(Node* n); // add a node to the graph
+        void addEdge(Edge* e); // add an edge to the graph
+
+        // return set of edges from a city to other cities
+        set<Edge*> getAdjacentEdges(Node* node); 
+
+        // sp with dijkstra's algorithm using pqueue
+        vector<Node*> computeShortestPath(Node* start, Node* end);
+
+        // build path from node through parent chain
+        vector<Node*> buildPath(Node* node);
+
+
+    };
+```
 
 ## ✅ Current Status
 
@@ -105,54 +194,62 @@ Manages all nodes and edges.
     }
 ```
 
-- **Min-Heap**: Used to efficiently retrieve the node with the lowest tentative distance - implemented as a priority queue
+- **Min-Heap Priority Queue**: Used to efficiently retrieve the node with the lowest tentative distance 
 
 ```cpp
-    class Pqueue {
-    private:
-        vector<Node*> heap;
+    void Pqueue::bubbleUp(int i) {
 
-    public:
-        Pqueue(); // constructor
-        ~Pqueue(); // deconstructor
-        vector<Node*> getHeap(); // getter for heap
-        void insert(Node* node); // insert a node into the heap
-        Node* getAndDeleteMin(); // retreive and remove min ele of heap
-        bool isEmpty(); // check if heap is empty
-        void updateNodeWeight(Node* node); // update node weight and position in heap
-        void swap(int i, int j); // swap two elements of heap
-        void bubbleUp(int i); // bubble up ele at index i in heap
-        void bubbleDown(int i); // bubble down ele at index i in heap
-    };
+        int idx = i;
+
+        while (idx > 0) {
+            int parent_idx = (idx - 1) / 2;
+
+            if (heap[idx]->getDist() < heap[parent_idx]->getDist()) {
+                swap(idx, parent_idx);
+                idx = parent_idx;
+            } else {
+                break;
+            }
+        }
+
+    }
+
+    void Pqueue::bubbleDown(int i) {
+        int idx = i;
+        int n = heap.size();
+
+        while (true) {
+            // get indexes of left and right childern of idx
+            int left_child_idx = (2 * idx) + 1;
+            int right_child_idx = (2 * idx) + 2;
+
+            // assume idx will be the idx of the smaller value d
+            int smaller = idx;
+
+            // update smaller based on sp of left and right children
+            if (left_child_idx < n && heap[left_child_idx]->getDist() < heap[smaller]->getDist()) {
+                smaller = left_child_idx;
+            }
+
+            if (right_child_idx < n && heap[right_child_idx]->getDist() < heap[smaller]->getDist()) {
+                smaller = right_child_idx;
+            }
+
+            // if smaller isn't idx swap
+            if (smaller != idx) {
+                swap(idx, smaller);
+                idx = smaller;
+            } else {
+                break;
+            }
+        } 
+    }
 ```
+
 - **Graphs**: Represented using adjacency lists with nodes and weighted edges
 
 ```cpp
-    class Graph {
-
-    private:
-        vector<Node*> nodes; // vector of nodes (cities)
-        vector<Edge*> edges; // vector of edges (roads)
-
-    public:
-        Graph(); // Constructor
-        ~Graph(); // Deconstructor
-        vector<Node*> getNodes(); // returns vector of nodes (cities)
-        vector<Edge*> getEdges(); // returns vector of edges (roads between cities)
-        void addNode(Node* n); // add a node to the graph
-        void addEdge(Edge* e); // add an edge to the graph
-
-        // return set of edges from a city to other cities
-        set<Edge*> getAdjacentEdges(Node* node); 
-
-        // sp with dijkstra's algorithm using pqueue
-        vector<Node*> computeShortestPath(Node* start, Node* end);
-
-        // build path from node through parent chain
-        vector<Node*> buildPath(Node* node);
-
-
-    };
+    // TODO Add example node and edge vectors...
 ```
 
 ## ⚠️ Technical Hurdles
