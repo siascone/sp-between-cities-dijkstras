@@ -21,6 +21,24 @@ Shortest path problems show up in GPS routing, networking, logistics, and more. 
   - Total distance of the shortest path
   - Sequence of cities along that path
 
+## Getting Setup and Running the Program
+
+1. Clone this repo
+- Navigate to project directory
+3. Setup and test application:
+-  cd into the /build folder and run the following commands:
+  - `cmake ..`
+  - `make`
+  - `./run_tests` (make sure all 24 tests are passing)
+3. Run the application:
+- open app/main.cpp
+  - comment in the 4 .cpp inclusions for Node, Edge, Graph and Pqueue
+- cd into the /app folder and run the following commands:
+  - `g++ main.cpp -o main` (compile the application)
+  - `./main` (run the application)
+  
+Note: If you would like to run the test suite after running the main file remember to comment out the 4 .cpp inclusions for Node, Edge, Graph and Pqueue
+
 ## 🏗️ Project Structure
 
 ### Core Classes

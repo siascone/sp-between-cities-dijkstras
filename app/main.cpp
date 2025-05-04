@@ -8,10 +8,16 @@
 #include "../code/Node.h"
 #include "../code/Edge.h"
 #include "../code/Pqueue.h"
-#include "../code/Graph.cpp"
-#include "../code/Node.cpp"
-#include "../code/Edge.cpp"
-#include "../code/Pqueue.cpp"
+
+// -------------------------------------------------------
+// comment these in when running main application
+// comment these out when building and running test suite
+// #include "../code/Graph.cpp"
+// #include "../code/Node.cpp"
+// #include "../code/Edge.cpp"
+// #include "../code/Pqueue.cpp"
+// -------------------------------------------------------
+
 #include "../tests/graph_builders.cpp"
 #include "greeting.cpp"
 #include "city_selection_options.cpp"
