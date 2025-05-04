@@ -4,22 +4,20 @@ A simple C++ application that finds the shortest path between cities using Dijks
 
 ## 🚀 Motivation and Interests
 
---->TODO: Rewrite motivation and intersts<---
+Mapping and navigation systems are compelling real-world applications of graph theory. This project explores how shortest path algorithms—like Dijkstra’s—form the backbone of such systems. By implementing Dijkstra’s algorithm from scratch, the project offers a hands-on dive into graph traversal and pathfinding.
 
-Mapping and navigation systems are fascinating examples of real-world graph applications. This project explores how shortest path algorithms power those systems. By implementing Dijkstra’s algorithm from scratch, this project serves as a hands-on deep dive into graph theory, pathfinding, and C++ data structures.
-
-Shortest path problems show up in GPS routing, networking, logistics, and more. Building this project from scratch makes those concepts tangible and opens the door to exploring advanced topics like A*, heuristics, or dynamic graph data.
+My interest in graphs and navigation stems from countless hours spent in the saddle, exploring routes with my bike computer. While the full complexity of modern bike mapping systems goes far beyond this project, their foundations lie in the same algorithms and concepts explored here. This project makes those fundamentals tangible and sets the stage for deeper exploration of topics like A*, heuristics, and dynamic graphs.
 
 ## 🧠 What It Does
 
---->TODO: Provide more detail here<---
+This project simulates a simplified map system by modeling cities and the roads that connect them as a weighted graph. It allows users to calculate the shortest travel route between two cities using Dijkstra’s algorithm. The program focuses on demonstrating core concepts of graph representation and pathfinding.
 
-- Represents cities as nodes in a graph
-- Represents roads as weighted edges (distance between cities)
-- Uses Dijkstra’s algorithm to compute the shortest path between two cities
+- Models a network of cities as nodes in a graph
+- Represents roads as weighted edges, where weights correspond to distances between cities
+- Implements Dijkstra’s algorithm to determine the shortest path between any two cities in the graph
 - Outputs:
+  - The ordered list of cities along the path
   - Total distance of the shortest path
-  - Sequence of cities along that path
 
 ## Getting Setup and Running the Program
 
@@ -39,21 +37,23 @@ Shortest path problems show up in GPS routing, networking, logistics, and more. 
   
 Note: If you would like to run the test suite after running the main file remember to comment out the 4 .cpp inclusions for Node, Edge, Graph and Pqueue
 
-## 🏗️ Project Structure
+## Project Structure
 
 ### Core Classes
 
-#### `Node`
+#### Node
 Represents a city in the graph.
 - Stores: name, distance, visited state, parent pointer, index in priority queue
-- Methods: accessors/mutators for all fields
+- Includes:
+  - getter for name
+  - getters/setters for all other fields
 
 ```cpp
     class Node {
     private:
         string name; // city name of node
         double dist; // distance of node
-        bool visited;
+        bool visited; // Whether node has been visited or not
         Node* parent;   // parent of node in sp.
         int idx_in_pq; // index in priority queue
 
@@ -69,14 +69,15 @@ Represents a city in the graph.
         void setParent(Node* node); // setter for node parent
         int getIdxInPQ(); // getter for idx_in_pq
         void setIdxInPQ(int idx); // setter for idx_in_pq
-
     };
 ```
 
 #### `Edge`
 Represents a road between two cities.
-- Stores: pointers to start/end cities and weight
-- Methods: accessors/mutators
+- Stores: pointers to start/end cities (nodes) and weight
+- Includes:
+  - getters for start and end cities
+  - getters/setters for weight
 
 ```cpp
     class Edge {
@@ -96,9 +97,13 @@ Represents a road between two cities.
 ```
 
 #### `Pqueue`
-Custom min-priority queue for efficient node selection in Dijkstra's algorithm.
+Custom min-heap priority queue for efficient node selection in Dijkstra's algorithm.
 - Based on a vector-backed binary heap
-- Includes: insert, get/delete min, update weight, bubbling helpers
+- Includes:
+  - insert
+  - get and delete min
+  - update weight
+  - bubbling helpers
 
 ```cpp
     class Pqueue {
@@ -123,7 +128,7 @@ Custom min-priority queue for efficient node selection in Dijkstra's algorithm.
 Manages all nodes and edges.
 - Methods:
   - `addNode`, `addEdge`
-  - `getAdjacentEdges(Node*)`
+  - `getAdjacentEdges(Node*)` - returns all edges with given node as start node
   - `computeShortestPath(Node* start, Node* end)`
   - `buildPath(Node*)` – traces back through parents
   
@@ -142,6 +147,9 @@ Manages all nodes and edges.
         void addNode(Node* n); // add a node to the graph
         void addEdge(Edge* e); // add an edge to the graph
 
+        // return a node based on city name input
+        Node* findNode(string name);
+
         // return set of edges from a city to other cities
         set<Edge*> getAdjacentEdges(Node* node); 
 
@@ -150,8 +158,6 @@ Manages all nodes and edges.
 
         // build path from node through parent chain
         vector<Node*> buildPath(Node* node);
-
-
     };
 ```
 
@@ -266,13 +272,13 @@ Manages all nodes and edges.
 - ✅ All four core classes (`Node`, `Edge`, `Pqueue`, `Graph`) implemented
 - ✅ Unit and integration tests completed with TDD
 - ✅ Dijkstra's algorithm correctly computes shortest paths
-
-## 🛠️ Next Steps (Planned UI)
-- Add CLI interface:
-  - Display a list of 12 local cities
-  - Allow user to choose a start and end city
-  - Output the total distance and list of cities along the shortest route
-  - Prompt user to search again or exit
+  - Test case of small graph with 5 nodes 12 edges
+  - Test case of large graph with 12 nodes and 56 edges
+- ✅ CLI interface
+  -  Displays a list of 12 local cities
+  -  Allow's user to choose a start and end city
+  -  Outputs list of cities along the shortest route and total distance
+  -  Prompts user to search again or exit the program
   
 ## ⚠️ Technical Hurdles
 
@@ -291,4 +297,5 @@ Manages all nodes and edges.
 - Display ASCII art of the graph and path
 - Implement support for alternate (2nd shortest) routes
 
+## Project Reflection
 ---
