@@ -13,38 +13,38 @@ Node::Node(string n) {
 
 Node::~Node() {}
 
-string Node::getName() {
+string Node::getName() { // return node name
     return name;
 }
 
-double Node::getDist() {
+double Node::getDist() { // return node distance
     return dist;
 }
 
-void Node::setDist(double d) {
+void Node::setDist(double d) { // set node distance
     dist = d;
 }
 
-bool Node::isVisited() {
+bool Node::isVisited() { // return true or false if node has been visited
     return visited;
 }
 
-void Node::setVisited(bool val) {
+void Node::setVisited(bool val) { // set visited state of node, used in sp calculation
     visited = val;
 }
 
-Node* Node::getParent() {
+Node* Node::getParent() { // return parent node
     return parent;
 }
 
-void Node::setParent(Node* node) {    
+void Node::setParent(Node* node) { // set parent node
     parent = node;
 }
 
-int Node::getIdxInPQ() {
+int Node::getIdxInPQ() { // return index in priority queue
     return idx_in_pq;
 }
 
-void Node::setIdxInPQ(int idx) {
+void Node::setIdxInPQ(int idx) { // set index in priority queue
     idx_in_pq = idx;
 }

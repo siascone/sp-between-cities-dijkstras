@@ -9,11 +9,11 @@ Graph::Graph() {}
 
 Graph::~Graph() {}
 
-vector<Node*> Graph::getNodes() {
+vector<Node*> Graph::getNodes() { // return vector of nodes
     return nodes;
 }
 
-Node* Graph::findNode(string name) {
+Node* Graph::findNode(string name) { // find a node by name in graph
     Node* node = nullptr;
     
     for (int i = 0; static_cast<int>(nodes.size()); i++) {
@@ -26,19 +26,19 @@ Node* Graph::findNode(string name) {
     return node;
 }
 
-vector<Edge*> Graph::getEdges() {
+vector<Edge*> Graph::getEdges() { // return vector of edges
     return edges;
 }
 
-void Graph::addNode(Node* node) {
+void Graph::addNode(Node* node) { // add a node to the graph
     nodes.push_back(node);
 }
 
-void Graph::addEdge(Edge* edge) {
+void Graph::addEdge(Edge* edge) { // add an edge to the graph
     edges.push_back(edge);
 }
 
-set<Edge*> Graph::getAdjacentEdges(Node* node) {
+set<Edge*> Graph::getAdjacentEdges(Node* node) { // find all outgoing edges from a node
     set<Edge*> adjacentEdges;
         
     for (int i = 0; i < static_cast<int>(edges.size()); i++) {
@@ -52,7 +52,7 @@ set<Edge*> Graph::getAdjacentEdges(Node* node) {
     return adjacentEdges;
 }
 
-vector<Node*> Graph::computeShortestPath(Node* start, Node* end){
+vector<Node*> Graph::computeShortestPath(Node* start, Node* end){ // Dijkstra's Algo
     // set start node dist, all nodes initiated to infinity
     start->setDist(0);
     
@@ -91,7 +91,7 @@ vector<Node*> Graph::computeShortestPath(Node* start, Node* end){
     return sp;
 }
 
-vector<Node*> Graph::buildPath(Node* node) {
+vector<Node*> Graph::buildPath(Node* node) { // build sp from end node via parent chain
     vector<Node*> sp;
     sp.insert(sp.begin(), node);
     

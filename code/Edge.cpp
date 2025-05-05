@@ -8,18 +8,18 @@ Edge::Edge(Node* n1, Node* n2, double w) {
 
 Edge::~Edge() {}
 
-Node* Edge::getNodeA() {
+Node* Edge::getNodeA() { // return node_a
     return node_a;
 }
 
-Node* Edge::getNodeB() {
+Node* Edge::getNodeB() { // return node_b
     return node_b;
 }
 
-double Edge::getWeight() {
+double Edge::getWeight() { // return edge weight
     return weight;
 }
 
-void Edge::setWeight(int val) {
+void Edge::setWeight(int val) { // set edge weight
     weight = val;
 }

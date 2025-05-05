@@ -10,13 +10,13 @@ vector<Node*> Pqueue::getHeap() {
     return heap;
 }
 
-void Pqueue::insert(Node* node) {
+void Pqueue::insert(Node* node) { // add node to queue and bubbule up
     heap.push_back(node);
     node->setIdxInPQ(heap.size() - 1);
     bubbleUp(node->getIdxInPQ());
 }
 
-Node* Pqueue::getAndDeleteMin() {
+Node* Pqueue::getAndDeleteMin() { // remove nearest node and rebalance queue
     if (isEmpty()) {
         return nullptr;
     }
@@ -38,17 +38,17 @@ Node* Pqueue::getAndDeleteMin() {
     return min_node;
 }
 
-bool Pqueue::isEmpty() {
+bool Pqueue::isEmpty() { // return true or false if queue is empty
     return heap.size() == 0;
 }
 
 void Pqueue::updateNodeWeight(Node* node) {
-    // new weight has been found for v, bubble up from old idx
+    // new weight has been found for v, bubble up from idx in queue
     bubbleUp(node->getIdxInPQ());
 
 }
 
-void Pqueue::swap(int i, int j) {
+void Pqueue::swap(int i, int j) { // swap elements in queue (parent/child)
     
     Node* temp = heap[i];
     heap[i] = heap[j];
@@ -59,7 +59,7 @@ void Pqueue::swap(int i, int j) {
 
 }
 
-void Pqueue::bubbleUp(int i) {
+void Pqueue::bubbleUp(int i) { // bubble up helper
     
     int idx = i;
     
@@ -76,7 +76,7 @@ void Pqueue::bubbleUp(int i) {
     
 }
 
-void Pqueue::bubbleDown(int i) {
+void Pqueue::bubbleDown(int i) { // bubble down helper
     int idx = i;
     int n = heap.size();
 
