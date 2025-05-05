@@ -3,7 +3,7 @@
 A simple C++ application that finds the shortest path between cities using 
 Dijkstra’s Algorithm on a weighted, bidirectional graph.
 
-## 🚀 Motivation and Interests
+## Motivation and Interests
 
 Mapping and navigation systems are compelling real-world applications of graph 
 theory. This project explores how shortest path algorithms—like Dijkstra’s—form 
@@ -17,7 +17,7 @@ in the same algorithms and concepts explored here. This project makes those
 fundamentals tangible and sets the stage for deeper exploration of topics like 
 A*, heuristics, and dynamic graphs.
 
-## 🧠 What It Does
+## What It Does
 
 This project simulates a simplified map system by modeling cities and the roads 
 that connect them as a weighted graph. It allows users to calculate the shortest 
@@ -253,7 +253,7 @@ and the underlying structure in the user interface.
   issue, validated the shortest path results, and turned the earlier false 
   positives into useful debugging insights.
 
-## 🌟 Future Features
+## Future Features
 
 - Visualization: Output the graph to the UI via ASCII art map.
 - Multiple Routes: Implement support for alternate (2nd shortest) routes
