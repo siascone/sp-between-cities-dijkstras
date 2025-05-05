@@ -35,6 +35,9 @@ on demonstrating core concepts of graph representation and pathfinding.
 
 ## Getting Setup and Running the Program
 
+[Setup Video](https://www.loom.com/share/7dcdfd35f1994f3a9222bb757597e674?sid=a6fbac47-2901-45c6-9a3c-3a32ac1e8841) - video instructions of the setup 
+outlined below.
+
 1. Clone this repo
 - Navigate to project directory
 3. Setup and test application:
@@ -48,7 +51,7 @@ on demonstrating core concepts of graph representation and pathfinding.
 - cd into the /app folder and run the following commands:
   - `g++ main.cpp -o main` (compile the application)
   - `./main` (run the application)
-  
+
 Note: If you would like to run the test suite after running the main file 
 remember to comment out the 4 .cpp inclusions for Node, Edge, Graph and Pqueue
 
