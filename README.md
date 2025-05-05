@@ -54,64 +54,26 @@ remember to comment out the 4 .cpp inclusions for Node, Edge, Graph and Pqueue
 
 ## Project Structure
 
-### Core Classes
+### Core Classes (linked to corresponding header files)
 
-#### Node
+#### [Node](code/Node.h)
+
 Represents a city in the graph.
 - Stores: name, distance, visited state, parent pointer, index in priority queue
 - Includes:
   - getter for name
   - getters/setters for all other fields
 
-```cpp
-    class Node {
-    private:
-        string name; // city name of node
-        double dist; // distance of node
-        bool visited; // Whether node has been visited or not
-        Node* parent;   // parent of node in sp.
-        int idx_in_pq; // index in priority queue
+#### [Edge](code/Edge.h)
 
-    public:
-        Node(string n); // constructor
-        ~Node(); // deconstructor
-        string getName(); // getter for name of node
-        double getDist(); // getter for distance of node
-        void setDist(double d); // setter for distance of node
-        bool isVisited(); // return true or false if node has been visited
-        void setVisited(bool val); // set visited state of node, used in sp calculation
-        Node* getParent(); // getter for node parent
-        void setParent(Node* node); // setter for node parent
-        int getIdxInPQ(); // getter for idx_in_pq
-        void setIdxInPQ(int idx); // setter for idx_in_pq
-    };
-```
-
-#### `Edge`
 Represents a road between two cities.
 - Stores: pointers to start/end cities (nodes) and weight
 - Includes:
   - getters for start and end cities
   - getters/setters for weight
 
-```cpp
-    class Edge {
-    private:
-        Node* node_a;  // start node
-        Node* node_b;  // end node
-        double weight; // edge weight
+#### [Pqueue](code/Pqueue.h)
 
-    public:
-        Edge(Node* n1, Node* n2, double w); // constructor
-        ~Edge(); // deconstructor
-        Node* getNodeA(); // get node a
-        Node* getNodeB(); // get node b
-        double getWeight(); // get edge weight
-        void setWeight(int val); // setter for edge weight
-    };
-```
-
-#### `Pqueue`
 Custom min-heap priority queue for efficient node selection in Dijkstra's 
 algorithm.
 - Based on a vector-backed binary heap
@@ -121,62 +83,17 @@ algorithm.
   - update weight
   - bubbling helpers
 
-```cpp
-    class Pqueue {
-    private:
-        vector<Node*> heap;
+#### [Graph](code/Graph.h)
 
-    public:
-        Pqueue(); // constructor
-        ~Pqueue(); // deconstructor
-        vector<Node*> getHeap(); // getter for heap
-        void insert(Node* node); // insert a node into the heap
-        Node* getAndDeleteMin(); // retreive and remove min ele of heap
-        bool isEmpty(); // check if heap is empty
-        void updateNodeWeight(Node* node); // update node weight and position in heap
-        void swap(int i, int j); // swap two elements of heap
-        void bubbleUp(int i); // bubble up ele at index i in heap
-        void bubbleDown(int i); // bubble down ele at index i in heap
-    };
-```
-
-#### `Graph`
 Manages all nodes and edges.
 - Methods:
-  - `addNode`, `addEdge`
-  - `getAdjacentEdges(Node*)` - returns all edges with given node as start node
-  - `computeShortestPath(Node* start, Node* end)`
+  - `addNode`, `addEdge` - adds a node or edge to the graph
+  - `getAdjacentEdges(Node*)` - returns all edges with a given node as the start 
+     node
+  - `computeShortestPath(Node* start, Node* end)` - implementation of Dijkstra's 
+    algorithm
   - `buildPath(Node*)` – traces back through parents
   
-```cpp
-    class Graph {
-
-    private:
-        vector<Node*> nodes; // vector of nodes (cities)
-        vector<Edge*> edges; // vector of edges (roads)
-
-    public:
-        Graph(); // Constructor
-        ~Graph(); // Deconstructor
-        vector<Node*> getNodes(); // returns vector of nodes (cities)
-        vector<Edge*> getEdges(); // returns vector of edges (roads between cities)
-        void addNode(Node* n); // add a node to the graph
-        void addEdge(Edge* e); // add an edge to the graph
-
-        // return a node based on city name input
-        Node* findNode(string name);
-
-        // return set of edges from a city to other cities
-        set<Edge*> getAdjacentEdges(Node* node); 
-
-        // sp with dijkstra's algorithm using pqueue
-        vector<Node*> computeShortestPath(Node* start, Node* end);
-
-        // build path from node through parent chain
-        vector<Node*> buildPath(Node* node);
-    };
-```
-
 ## Key Concepts
 
 ### 1. **Dijkstra’s Algorithm**:
