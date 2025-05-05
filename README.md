@@ -163,10 +163,20 @@ Manages all nodes and edges.
 
 ## 📚 Key Concepts
 
---->TODO: Elaborate on each key concept and discuss provided code<---
+1. **Dijkstra’s Algorithm**:
 
+  Dijkstra’s Algorithm is a classic greedy algorithm used to find the shortest path between nodes in a weighted graph with non-negative edge weights. It systematically explores paths from a starting node, always selecting the node with the lowest 
+  known distance from the start, and updates neighboring nodes with shorter paths when found. This process continues until the shortest paths to all reachable nodes have been determined.
 
-- **Dijkstra’s Algorithm**: Greedy algorithm for finding shortest paths in weighted graphs
+  In the case of this project, everytime a node is relaxed the node's parent is updated as well. This way from any given end node (city) the shortest path can be calculated by simply followoing the chain of parents until we reach a node with a NULL 
+  parent which will always be the given start node (city). 
+
+- Key Characteristics:
+  - Uses a priority queue to always process the closest unvisited node.
+  - Keeps track of the current shortest know distancs to each node and the parent node from which that distance was calculated
+  - Whenever a shorter path to a node is discovered, the algorithm relaxes the edge - updating the node's distance and parent
+   
+The code below is the implimentation of Dijkstra's Algorithm used in this project
 
 ```cpp
     vector<Node*> Graph::computeShortestPath(Node* start, Node* end){
@@ -208,64 +218,16 @@ Manages all nodes and edges.
         return sp;
     }
 ```
+2. **Min-Heap Priority Queue**: 
 
-- **Min-Heap Priority Queue**: Used to efficiently retrieve the node with the lowest tentative distance 
+A Min-Heap Priority Queue is a data structure that allows for the efficient retrieval of the element with the lowest value. In the case of this project we are considering the node with the smallest tentative distance from the starting point. 
 
-```cpp
-    void Pqueue::bubbleUp(int i) {
+In Dijkstra’s algorithm, the priority queue ensures that the next node visited is always the one closest to the start node based on current known distances. 
+  - This behavior is crucial to the algorithm's greedy approach: by always expanding the nearest unvisited node, it guarantees that the shortest paths are found incrementally and efficiently.
+  - The priority queue supports fast insertion, removal, and updating (or "bubbling up/down") of nodes as better paths are discovered during execution.
 
-        int idx = i;
+3.  **Graphs**: Represented using adjacency lists with nodes and weighted edges
 
-        while (idx > 0) {
-            int parent_idx = (idx - 1) / 2;
-
-            if (heap[idx]->getDist() < heap[parent_idx]->getDist()) {
-                swap(idx, parent_idx);
-                idx = parent_idx;
-            } else {
-                break;
-            }
-        }
-
-    }
-
-    void Pqueue::bubbleDown(int i) {
-        int idx = i;
-        int n = heap.size();
-
-        while (true) {
-            // get indexes of left and right childern of idx
-            int left_child_idx = (2 * idx) + 1;
-            int right_child_idx = (2 * idx) + 2;
-
-            // assume idx will be the idx of the smaller value d
-            int smaller = idx;
-
-            // update smaller based on sp of left and right children
-            if (left_child_idx < n && heap[left_child_idx]->getDist() < heap[smaller]->getDist()) {
-                smaller = left_child_idx;
-            }
-
-            if (right_child_idx < n && heap[right_child_idx]->getDist() < heap[smaller]->getDist()) {
-                smaller = right_child_idx;
-            }
-
-            // if smaller isn't idx swap
-            if (smaller != idx) {
-                swap(idx, smaller);
-                idx = smaller;
-            } else {
-                break;
-            }
-        } 
-    }
-```
-
-- **Graphs**: Represented using adjacency lists with nodes and weighted edges
-
-```cpp
-    // TODO Add example node and edge vectors...
-```
 
 ## ✅ Current Status
 
