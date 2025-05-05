@@ -177,7 +177,7 @@ Manages all nodes and edges.
     };
 ```
 
-## 📚 Key Concepts
+## Key Concepts
 
 ### 1. **Dijkstra’s Algorithm**:
 
@@ -257,12 +257,12 @@ is always the one closest to the start node based on current known distances.
 - The priority queue supports fast insertion, removal, and updating (or 
   "bubbling up/down") of nodes as better paths are discovered during execution.
 
-### 3.  **Graphs**: 
+### 3.  **Graph**: 
 
 In this project, the graph is represented using separate vectors for nodes and 
 edges, rather than a pre-built adjacency list. Instead, adjacency-like behavior 
 is constructed dynamically during traversal: 
-- when a node is dequeued from the priority queue, the program locates all edges
+- When a node is dequeued from the priority queue, the program locates all edges
   that originate from that node and processes their corresponding destination 
   nodes.
 
@@ -281,35 +281,58 @@ This structure supports Dijkstra’s algorithm as follows:
 
 This approach maintains flexibility while still supporting efficient graph traversal and shortest path computation.
 
-## ✅ Current Status
+## Current Status
 
 - ✅ All four core classes (`Node`, `Edge`, `Pqueue`, `Graph`) implemented
-- ✅ Unit and integration tests completed with TDD
+
+- ✅ Unit and integration tests completed with TDD and (red, green, refactor)
+
 - ✅ Dijkstra's algorithm correctly computes shortest paths
   - Test case of small graph with 5 nodes 12 edges
   - Test case of large graph with 12 nodes and 56 edges
+
 - ✅ CLI interface
   -  Displays a list of 12 local cities
   -  Allow's user to choose a start and end city
   -  Outputs list of cities along the shortest route and total distance
   -  Prompts user to search again or exit the program
   
-## ⚠️ Technical Hurdles
+## Technical Hurdles
 
---->TODO: Expand on experience with these technical hurdles<---
+- **Priority Queue Behavior:**
+  Initially anticipated as a major challenge, priority queue behavior turned out
+  to be relatively straightforward thanks to the deep understanding gained 
+  during class. Implementing efficient updates—especially when better paths were
+  found—was manageable and worked as expected in practice.
 
+- **C++ Memory and Ownership**:
+  Navigating memory management in C++ was a valuable learning experience. A key
+  insight came from exploring how destructors work within classes. Once an 
+  object created with `new` was no longer in use, the class’s destructor 
+  automatically handled cleanup. 
+  
+  At one point, I incorrectly suspected a memory leak and attempted to manually 
+  delete objects, which led to runtime errors—those objects had already been 
+  cleaned up. This reinforced the importance of understanding object lifetimes 
+  and trusting properly implemented destructors.
 
-- Efficiently updating node priorities in the heap
-- Correct memory management and ownership in C++
-- Debugging graph traversal logic and edge cases
+- **Debugging Traversal**:
+  Graph traversal bugs surfaced during testing, especially when scaling up. A 
+  small graph passed initial tests, but a larger map revealed routing failures 
+  where expected paths were unreachable. 
+  
+  After reviewing the problem, I discovered that although I had correctly added 
+  all directed edges, I had overlooked the need for bidirectional edges. My test
+  map represented an undirected graph, and I was only allowing one-way travel 
+  between nodes. Updating the graph to support two-way connections resolved the 
+  issue, validated the shortest path results, and turned the earlier false 
+  positives into useful debugging insights.
 
 ## 🌟 Future Features
 
---->TODO: Explore other possible features and reorder based on feasibility<---
+- Visualization: Output the graph to the UI via ASCII art map.
+- Multiple Routes: Implement support for alternate (2nd shortest) routes
+- Graph Input from File: Load existing city/road data from external resource 
+  (e.g. CSV)
 
-- Load actual city/road data from external file (e.g. CSV)
-- Display ASCII art of the graph and path
-- Implement support for alternate (2nd shortest) routes
-
-## Project Reflection
 ---
