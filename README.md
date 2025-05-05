@@ -1,20 +1,34 @@
 # Shortest Path Finder with Dijkstra’s Algorithm
 
-A simple C++ application that finds the shortest path between cities using Dijkstra’s Algorithm on a weighted, bidirectional graph.
+A simple C++ application that finds the shortest path between cities using 
+Dijkstra’s Algorithm on a weighted, bidirectional graph.
 
 ## 🚀 Motivation and Interests
 
-Mapping and navigation systems are compelling real-world applications of graph theory. This project explores how shortest path algorithms—like Dijkstra’s—form the backbone of such systems. By implementing Dijkstra’s algorithm from scratch, the project offers a hands-on dive into graph traversal and pathfinding.
+Mapping and navigation systems are compelling real-world applications of graph 
+theory. This project explores how shortest path algorithms—like Dijkstra’s—form 
+the backbone of such systems. By implementing Dijkstra’s algorithm from scratch, 
+the project offers a hands-on dive into graph traversal and pathfinding.
 
-My interest in graphs and navigation stems from countless hours spent in the saddle, exploring routes with my bike computer. While the full complexity of modern bike mapping systems goes far beyond this project, their foundations lie in the same algorithms and concepts explored here. This project makes those fundamentals tangible and sets the stage for deeper exploration of topics like A*, heuristics, and dynamic graphs.
+My interest in graphs and navigation stems from countless hours spent in the 
+saddle, exploring routes with my bike computer. While the full complexity of 
+modern bike mapping systems goes far beyond this project, their foundations lie 
+in the same algorithms and concepts explored here. This project makes those 
+fundamentals tangible and sets the stage for deeper exploration of topics like 
+A*, heuristics, and dynamic graphs.
 
 ## 🧠 What It Does
 
-This project simulates a simplified map system by modeling cities and the roads that connect them as a weighted graph. It allows users to calculate the shortest travel route between two cities using Dijkstra’s algorithm. The program focuses on demonstrating core concepts of graph representation and pathfinding.
+This project simulates a simplified map system by modeling cities and the roads 
+that connect them as a weighted graph. It allows users to calculate the shortest 
+travel route between two cities using Dijkstra’s algorithm. The program focuses 
+on demonstrating core concepts of graph representation and pathfinding.
 
 - Models a network of cities as nodes in a graph
-- Represents roads as weighted edges, where weights correspond to distances between cities
-- Implements Dijkstra’s algorithm to determine the shortest path between any two cities in the graph
+- Represents roads as weighted edges, where weights correspond to distances 
+  between cities
+- Implements Dijkstra’s algorithm to determine the shortest path between any two 
+  cities in the graph
 - Outputs:
   - The ordered list of cities along the path
   - Total distance of the shortest path
@@ -35,7 +49,8 @@ This project simulates a simplified map system by modeling cities and the roads 
   - `g++ main.cpp -o main` (compile the application)
   - `./main` (run the application)
   
-Note: If you would like to run the test suite after running the main file remember to comment out the 4 .cpp inclusions for Node, Edge, Graph and Pqueue
+Note: If you would like to run the test suite after running the main file 
+remember to comment out the 4 .cpp inclusions for Node, Edge, Graph and Pqueue
 
 ## Project Structure
 
@@ -97,7 +112,8 @@ Represents a road between two cities.
 ```
 
 #### `Pqueue`
-Custom min-heap priority queue for efficient node selection in Dijkstra's algorithm.
+Custom min-heap priority queue for efficient node selection in Dijkstra's 
+algorithm.
 - Based on a vector-backed binary heap
 - Includes:
   - insert
@@ -163,18 +179,26 @@ Manages all nodes and edges.
 
 ## 📚 Key Concepts
 
-1. **Dijkstra’s Algorithm**:
+### 1. **Dijkstra’s Algorithm**:
 
-  Dijkstra’s Algorithm is a classic greedy algorithm used to find the shortest path between nodes in a weighted graph with non-negative edge weights. It systematically explores paths from a starting node, always selecting the node with the lowest 
-  known distance from the start, and updates neighboring nodes with shorter paths when found. This process continues until the shortest paths to all reachable nodes have been determined.
+Dijkstra’s Algorithm is a classic greedy algorithm used to find the shortest 
+path between nodes in a weighted graph with non-negative edge weights. It 
+systematically explores paths from a starting node, always selecting the node 
+with the lowest known distance from the start, and updates neighboring nodes 
+with shorter paths when found. This process continues until the shortest paths 
+to all reachable nodes have been determined.
 
-  In the case of this project, everytime a node is relaxed the node's parent is updated as well. This way from any given end node (city) the shortest path can be calculated by simply followoing the chain of parents until we reach a node with a NULL 
-  parent which will always be the given start node (city). 
+In the case of this project, everytime a node is relaxed the node's parent is 
+updated as well. This way from any given end node (city) the shortest path can 
+be calculated by simply followoing the chain of parents until we reach a node 
+with a NULL parent which will always be the given start node (city). 
 
 - Key Characteristics:
   - Uses a priority queue to always process the closest unvisited node.
-  - Keeps track of the current shortest know distancs to each node and the parent node from which that distance was calculated
-  - Whenever a shorter path to a node is discovered, the algorithm relaxes the edge - updating the node's distance and parent
+  - Keeps track of the current shortest know distancs to each node and the 
+    parent node from which that distance was calculated
+  - Whenever a shorter path to a node is discovered, the algorithm relaxes the 
+    edge - updating the node's distance and parent
    
 The code below is the implimentation of Dijkstra's Algorithm used in this project
 
@@ -218,16 +242,44 @@ The code below is the implimentation of Dijkstra's Algorithm used in this projec
         return sp;
     }
 ```
-2. **Min-Heap Priority Queue**: 
+### 2. **Min-Heap Priority Queue**: 
 
-A Min-Heap Priority Queue is a data structure that allows for the efficient retrieval of the element with the lowest value. In the case of this project we are considering the node with the smallest tentative distance from the starting point. 
+A Min-Heap Priority Queue is a data structure that allows for the efficient 
+retrieval of the element with the lowest value. In the case of this project we 
+are considering the node with the smallest tentative distance from the starting 
+point. 
 
-In Dijkstra’s algorithm, the priority queue ensures that the next node visited is always the one closest to the start node based on current known distances. 
-  - This behavior is crucial to the algorithm's greedy approach: by always expanding the nearest unvisited node, it guarantees that the shortest paths are found incrementally and efficiently.
-  - The priority queue supports fast insertion, removal, and updating (or "bubbling up/down") of nodes as better paths are discovered during execution.
+In Dijkstra’s algorithm, the priority queue ensures that the next node visited 
+is always the one closest to the start node based on current known distances. 
+- This behavior is crucial to the algorithm's greedy approach: by always 
+  expanding the nearest unvisited node, it guarantees that the shortest paths 
+  are found incrementally and efficiently.
+- The priority queue supports fast insertion, removal, and updating (or 
+  "bubbling up/down") of nodes as better paths are discovered during execution.
 
-3.  **Graphs**: Represented using adjacency lists with nodes and weighted edges
+### 3.  **Graphs**: 
 
+In this project, the graph is represented using separate vectors for nodes and 
+edges, rather than a pre-built adjacency list. Instead, adjacency-like behavior 
+is constructed dynamically during traversal: 
+- when a node is dequeued from the priority queue, the program locates all edges
+  that originate from that node and processes their corresponding destination 
+  nodes.
+
+This structure supports Dijkstra’s algorithm as follows:
+
+- Nodes represent cities and store metadata like distance, visited status, and 
+  parent.
+- Edges represent roads, containing a weight (distance) and pointers to the 
+  start and end nodes.
+- During execution, the graph locates all outgoing edges from the current node 
+  to identify neighbors.
+- The algorithm then relaxes these neighbors—updating distances and queue 
+  positions if a shorter path is found.
+- The priority queue ensures that the next node selected for exploration is 
+  always the one with the lowest known distance from the start.
+
+This approach maintains flexibility while still supporting efficient graph traversal and shortest path computation.
 
 ## ✅ Current Status
 
