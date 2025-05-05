@@ -201,7 +201,7 @@ This approach maintains flexibility while still supporting efficient graph trave
 The image below is a visual representation of the main graph used for testing 
 and the underlying structure in the user interface.
 
-![lgGraph](graph.png)
+
 
 ## Current Status
 
