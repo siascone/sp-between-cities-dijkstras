@@ -203,7 +203,6 @@ and the underlying structure in the user interface.
 
 ![lgGraph](graph.png)
 
-
 ## Current Status
 
 - ✅ All four core classes (`Node`, `Edge`, `Pqueue`, `Graph`) implemented
